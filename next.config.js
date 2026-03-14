@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity'],
-  // output: 'export',
+  reactStrictMode: false,
+  transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity', 'sanity-plugin-media'],
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -10,7 +10,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'gw2ay2qy.apicdn.sanity.io' },
     ],
   },
-  trailingSlash: true,
   async headers() {
     return [
       {
@@ -21,8 +20,20 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
         ],
       },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/favicon-vip.ico',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
+        ],
+      },
     ];
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
