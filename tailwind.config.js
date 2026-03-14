@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './hooks/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     container: {
@@ -11,20 +14,17 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Core palette
         base: {
-          DEFAULT: "#0a0a0a", // near-black background
+          DEFAULT: "#0a0a0a",
           950: "#0a0a0a",
           900: "#0e0e0e",
           800: "#1a1a1a",
         },
-        // Accent
         accent: {
-          DEFAULT: "#0ea5e9", // main accent
-          hover: "#38bdf8",   // hover/active
-          fg: "#ffffff",      // text on accent
+          DEFAULT: "#0ea5e9",
+          hover: "#38bdf8",
+          fg: "#ffffff",
         },
-        // Neutrals
         text: {
           primary: "#ffffff",
           secondary: "#d1d5db",
@@ -34,12 +34,11 @@ module.exports = {
           card: "#111111",
           border: "#1f2937",
         },
-        // Border colors for our palette
         border: {
-          'text-muted': '#9ca3af', // Secondary Accent
-          'text-secondary': '#d1d5db', // Text Secondary
-          'accent': '#0ea5e9', // Primary Accent
-          'accent-hover': '#38bdf8', // Highlight
+          'text-muted': '#9ca3af',
+          'text-secondary': '#d1d5db',
+          'accent': '#0ea5e9',
+          'accent-hover': '#38bdf8',
         },
       },
       fontFamily: {
@@ -74,7 +73,6 @@ module.exports = {
   },
   plugins: [
     function ({ addBase, addComponents }) {
-      // Typography scale
       addBase({
         'h1': { fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: '800', letterSpacing: '-0.02em' },
         'h2': { fontSize: 'clamp(2rem, 3vw, 2.5rem)', fontWeight: '700', letterSpacing: '-0.01em' },
@@ -82,8 +80,6 @@ module.exports = {
         'p' : { fontSize: '1rem', lineHeight: '1.7' },
         'small': { fontSize: '.875rem' },
       });
-      
-      // Reusable components
       addComponents({
         '.btn': {
           display: 'inline-flex',
@@ -96,12 +92,12 @@ module.exports = {
           transition: 'all 150ms',
         },
         '.btn-primary': {
-          backgroundColor: '#0369a1', // Darker blue for better contrast
+          backgroundColor: '#0369a1',
           color: '#ffffff',
           boxShadow: '0 8px 24px rgba(3,105,161,0.25)',
         },
         '.btn-primary:hover': {
-          backgroundColor: '#0ea5e9', // Original accent color on hover
+          backgroundColor: '#0ea5e9',
           transform: 'translateY(-1px)',
         },
         '.btn-primary:active': {
@@ -111,14 +107,14 @@ module.exports = {
         '.btn-outline': {
           border: '1px solid #1f2937',
           color: '#d1d5db',
-          backgroundColor: 'rgba(17, 17, 17, 0.8)', // Semi-transparent dark background
+          backgroundColor: 'rgba(17, 17, 17, 0.8)',
           backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)', // Safari support
+          WebkitBackdropFilter: 'blur(8px)',
         },
         '.btn-outline:hover': {
           borderColor: '#38bdf8',
           color: '#ffffff',
-          backgroundColor: 'rgba(17, 17, 17, 0.9)', // Slightly more opaque on hover
+          backgroundColor: 'rgba(17, 17, 17, 0.9)',
         },
         '.btn-outline:active': {
           transform: 'scale(0.95)',
@@ -147,4 +143,4 @@ module.exports = {
       });
     }
   ],
-}; 
+};

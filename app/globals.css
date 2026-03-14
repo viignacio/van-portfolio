@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+@config '../tailwind.config.js';
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility section-padding {
+  @apply py-20 lg:py-24;
+}
+
+@utility container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+@utility h-screen-dynamic {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+}
+
+@utility grid-12 {
+  @apply grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6;
+}
+
+@utility animate-on-scroll {
+  @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+
+  &.animate {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@utility animate {
+  &.animate-on-scroll {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@utility will-change-scroll {
+  will-change: scroll-position;
+  backface-visibility: hidden;
+}
+
+@layer base {
+  :root {
+    font-family: 'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+  }
+
+  body {
+    @apply font-body text-text-primary bg-base antialiased;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-text-primary;
+  }
+
+  *:focus-visible {
+    @apply focus-ring;
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-fg;
+  }
+}

@@ -22,7 +22,7 @@ A modern, responsive portfolio website showcasing QA automation expertise, built
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/viignacio-iona/van-portfolio.git
+   git clone https://github.com/viignacio/van-portfolio.git
    cd van-portfolio
    ```
 
@@ -37,10 +37,6 @@ A modern, responsive portfolio website showcasing QA automation expertise, built
    NEXT_PUBLIC_SANITY_DATASET=<dataset>
    NEXT_PUBLIC_SANITY_API_VERSION=<version>>
    SANITY_API_TOKEN=<sanity_token>
-   EMAIL_USER=apikey
-   EMAIL_PASSWORD=<sendgrid_api_key>
-   EMAIL_FROM=<verified_sender>
-   EMAIL_TO=<recipient>
    ```
 
 4. Run the development server:
@@ -91,4 +87,4 @@ MIT
 
 ## Contact
 
-Van Ian Ignacio — [LinkedIn](https://www.linkedin.com/in/viignacio-ctfl/) — van.ignacio@ionacommerce.com
+Van Ian Ignacio — [LinkedIn](https://www.linkedin.com/in/viignacio-ctfl/) — van.xperia@gmail.com

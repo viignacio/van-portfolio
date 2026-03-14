@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity', 'sanity-plugin-media'],
-  // output: 'export',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -10,7 +10,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'gw2ay2qy.apicdn.sanity.io' },
     ],
   },
-  trailingSlash: true,
   async headers() {
     return [
       {
@@ -22,17 +21,9 @@ const nextConfig = {
         ],
       },
       {
-        // Immutable cache for hashed static assets (JS, CSS chunks)
         source: '/_next/static/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
-      {
-        // Long-lived cache for public images and other static files
-        source: '/images/:path*',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
         ],
       },
       {
@@ -45,4 +36,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
