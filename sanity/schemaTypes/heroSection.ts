@@ -101,6 +101,57 @@ export default {
       options: {
         hotspot: true
       }
+    },
+    {
+      name: 'background',
+      title: 'Hero Background',
+      description: 'Choose what appears behind the hero content',
+      type: 'object',
+      fields: [
+        {
+          name: 'overlay',
+          title: 'Overlay',
+          description: 'Darkens the background to improve text readability',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'None', value: 'none' },
+              { title: 'Dark (50%)', value: 'dark' },
+              { title: 'Darker (80%)', value: 'darker' },
+            ],
+            layout: 'radio',
+          },
+          initialValue: 'none',
+        },
+        {
+          name: 'type',
+          title: 'Background Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Faulty Terminal (WebGL animation)', value: 'faultyTerminal' },
+              { title: 'Image', value: 'image' },
+              { title: 'Video', value: 'video' },
+            ],
+            layout: 'radio',
+          },
+          initialValue: 'faultyTerminal',
+        },
+        {
+          name: 'image',
+          title: 'Background Image',
+          type: 'image',
+          options: { hotspot: true },
+          hidden: ({ parent }: any) => parent?.type !== 'image',
+        },
+        {
+          name: 'video',
+          title: 'Background Video',
+          type: 'file',
+          options: { accept: 'video/*' },
+          hidden: ({ parent }: any) => parent?.type !== 'video',
+        },
+      ],
     }
   ],
   preview: {

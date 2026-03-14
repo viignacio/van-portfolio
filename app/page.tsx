@@ -41,7 +41,7 @@ export default async function Home() {
           >
             {index === 0 && layoutBlock.heroSection && (
               <>
-                <HeroBackground />
+                <HeroBackground background={layoutBlock.heroSection?.background} />
                 <div className="absolute inset-0 bg-linear-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10" />
                 <div className="h-full flex items-center justify-start relative z-20 pointer-events-none">
                   <div className="pointer-events-auto relative z-20 px-4 lg:w-4/5 lg:mx-auto lg:p-8">

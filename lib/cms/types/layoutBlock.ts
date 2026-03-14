@@ -11,6 +11,12 @@ export interface HeroSection {
   };
   cta1?: { text: string; url: string; isExternal: boolean };
   cta2?: { text: string; url: string; isExternal: boolean; email?: string };
+  background?: {
+    overlay?: 'none' | 'dark' | 'darker';
+    type?: 'faultyTerminal' | 'image' | 'video';
+    image?: { asset?: { _ref?: string }; hotspot?: unknown; crop?: unknown };
+    videoUrl?: string;
+  };
 }
 
 export interface LayoutBlock {

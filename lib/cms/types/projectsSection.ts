@@ -10,11 +10,7 @@ export interface Project {
   title: string;
   slug: { current: string };
   description: string;
-  image?: {
-    asset?: { _ref?: string };
-    hotspot?: unknown;
-    crop?: unknown;
-  };
+  image?: { asset?: { _ref?: string }; hotspot?: unknown; crop?: unknown };
   techStack?: string[];
   challenges?: string[];
   demoUrl?: string;

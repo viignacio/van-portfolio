@@ -16,15 +16,17 @@ import contactSection from './contactSection';
 import page from './page';
 import careerEntry from './careerEntry';
 import technologyStack from './technologyStack';
+import media from './media';
 
 export const schemaTypes = [
-  project, 
-  commendation, 
-  skill, 
-  certification, 
-  profile, 
-  navbar, 
-  footer, 
+  media,
+  project,
+  commendation,
+  skill,
+  certification,
+  profile,
+  navbar,
+  footer,
   layoutBlock,
   heroSection,
   aboutSection,

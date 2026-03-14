@@ -8,11 +8,7 @@ export interface Certification {
   credentialId?: string;
   credentialUrl?: string;
   description?: string;
-  image?: {
-    asset?: { _ref?: string };
-    hotspot?: unknown;
-    crop?: unknown;
-  };
+  image?: { asset?: { _ref?: string }; hotspot?: unknown; crop?: unknown };
 }
 
 export interface CertificationsSection {

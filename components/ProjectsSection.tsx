@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { urlFor } from '@/lib/sanity/image';
+import MediaRenderer from '@/components/MediaRenderer';
 import {
   ArrowTopRightOnSquareIcon, CodeBracketIcon, EyeIcon,
   ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon
@@ -50,8 +50,8 @@ function ProjectSlide({
         <div className="relative">
           {project.image ? (
             <div className="relative overflow-hidden rounded-xl group w-full h-40 lg:aspect-square lg:h-auto">
-              <img
-                src={urlFor(project.image).width(800).quality(75).auto('format').url()}
+              <MediaRenderer
+                media={{ mediaType: 'image', image: project.image }}
                 alt={project.title}
                 className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
               />
