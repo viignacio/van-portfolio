@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity'],
   // output: 'export',
   images: {
     unoptimized: true,
-    domains: ['localhost', 'cdn.sanity.io', 'givnzkpy.apicdn.sanity.io'],
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
+      { protocol: 'https', hostname: 'gw2ay2qy.apicdn.sanity.io' },
+    ],
   },
   trailingSlash: true,
   async headers() {

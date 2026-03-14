@@ -1,16 +1,16 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CalendarIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import { 
   SiReact, SiVuedotjs, SiAngular, SiNextdotjs, SiTypescript, SiJavascript, 
-  SiHtml5, SiCss3, SiTailwindcss, SiSass, SiNodedotjs, SiPython, SiPhp, 
+  SiHtml5, SiCss, SiTailwindcss, SiSass, SiNodedotjs, SiPython, SiPhp, 
   SiExpress, SiDjango, SiSpring, SiDotnet, SiLaravel, SiMongodb, SiPostgresql, 
   SiMysql, SiRedis, SiFirebase, SiDocker, SiGit, 
   SiJenkins, SiKubernetes, SiJest, SiCypress, SiSelenium, SiRobotframework, 
   SiCucumber, SiGraphql, SiWebpack, SiVite, SiNpm, SiYarn, SiJira, SiConfluence,
-  SiSlack, SiFigma, SiAdobexd, SiPostman, SiInsomnia, SiVsco, SiIntellijidea,
+  SiSlack, SiFigma, SiPostman, SiInsomnia, SiVsco, SiIntellijidea,
   SiSanity, SiVercel, SiShopify, SiSnowflake, SiGoogletagmanager, SiApachejmeter, SiWebflow
 } from 'react-icons/si';
 import { JavaIcon, CSharpIcon, AzureIcon, PlaywrightIcon, PythonIcon, TypeScriptIcon, CypressIcon, RobotFrameworkIcon, LighthouseIcon, WaveIcon, AxeDevToolsIcon, CommerceToolsIcon, AwsIcon, GitHubIcon } from './icons/technologies';
@@ -92,7 +92,7 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('typescript')) return <TypeScriptIcon className="w-8 h-8" />;
   if (name.includes('javascript')) return <SiJavascript className="w-8 h-8 text-[#F7DF1E]" />;
   if (name.includes('html')) return <SiHtml5 className="w-8 h-8 text-[#E34F26]" />;
-  if (name.includes('css')) return <SiCss3 className="w-8 h-8 text-[#1572B6]" />;
+  if (name.includes('css')) return <SiCss className="w-8 h-8 text-[#1572B6]" />;
   if (name.includes('tailwind')) return <SiTailwindcss className="w-8 h-8 text-[#06B6D4]" />;
   if (name.includes('sass') || name.includes('scss')) return <SiSass className="w-8 h-8 text-[#CC6699]" />;
   
@@ -151,7 +151,7 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('confluence')) return <SiConfluence className="w-8 h-8 text-[#172B4D]" />;
   if (name.includes('slack')) return <SiSlack className="w-8 h-8 text-[#4A154B]" />;
   if (name.includes('figma')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiFigma className="w-8 h-8 text-[#F24E1E]" /></div>;
-  if (name.includes('adobe') || name.includes('xd')) return <SiAdobexd className="w-8 h-8 text-[#FF61F6]" />;
+  if (name.includes('adobe') || name.includes('xd')) return <SiFigma className="w-8 h-8 text-[#FF61F6]" />;
   if (name.includes('postman')) return <SiPostman className="w-8 h-8 text-[#FF6C37]" />;
   if (name.includes('insomnia')) return <SiInsomnia className="w-8 h-8 text-[#4000BF]" />;
   if (name.includes('vscode') || name.includes('visual studio code')) return <SiVsco className="w-8 h-8 text-[#007ACC]" />;
@@ -353,7 +353,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 {/* Vertical Timeline */}
                 <div className="relative">
                   {/* Continuous Timeline Line */}
-                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent"></div>
+                  <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent via-accent/50 to-transparent"></div>
                   
                   <div className="space-y-6">
                     {careerTimeline.map((entry, index) => {
@@ -402,7 +402,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                                 {entry.position}
                               </h4>
                               <div className="flex items-center gap-2 text-text-secondary">
-                                <BuildingOfficeIcon className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" />
+                                <BuildingOfficeIcon className="w-4 h-4 lg:w-5 lg:h-5 shrink-0" />
                                 <span className="font-medium">{entry.company}</span>
                               </div>
                             </div>
@@ -410,14 +410,14 @@ export default function AboutSection({ data }: AboutSectionProps) {
                             {/* Dates & Duration */}
                             <div className="flex items-center justify-between gap-2 text-sm text-text-muted relative z-10">
                               <div className="flex items-center gap-2 flex-1">
-                                <CalendarIcon className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" />
+                                <CalendarIcon className="w-4 h-4 lg:w-5 lg:h-5 shrink-0" />
                                 <div className="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 flex-1">
                                   <span>{formatDate(entry.startDate)}</span>
                                   <span className="hidden lg:inline"> - </span>
                                   <span className="lg:mx-1">{entry.endDate ? formatDate(entry.endDate) : 'Present'}</span>
                                 </div>
                               </div>
-                              <span className="bg-ui-card px-2 py-1 rounded-md text-accent font-medium flex-shrink-0">
+                              <span className="bg-ui-card px-2 py-1 rounded-md text-accent font-medium shrink-0">
                                 {getDuration(entry.startDate, entry.endDate)}
                               </span>
                             </div>

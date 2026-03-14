@@ -98,7 +98,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
             <div className="bg-base/10 backdrop-blur-2xl border border-text-muted/30 rounded-2xl shadow-2xl">
               <div className="flex items-center justify-between h-20 px-8">
               {/* Logo/Brand */}
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 {navbarData.logo?.asset?.url && (
                   <div className="relative h-12 w-32">
                     <Image 
@@ -122,7 +122,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                         {link.isExternal ? (
                           <Link
                             href={link.href}
-                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-sm"
+                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -133,7 +133,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                         ) : (
                           <a
                             href={link.href}
-                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-sm cursor-pointer"
+                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs cursor-pointer"
                             onClick={(e) => {
                               e.preventDefault();
                               const targetId = link.href.replace('#', '');
@@ -160,7 +160,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
       {showNavbar && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base/10 backdrop-blur-2xl border border-text-muted/30 shadow-2xl flex items-center justify-center text-text-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base/20"
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base/10 backdrop-blur-2xl border border-text-muted/30 shadow-2xl flex items-center justify-center text-text-primary transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base/20"
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -173,7 +173,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
         <>
           {/* Backdrop */}
           <div
-            className={`fixed inset-0 bg-base z-[60] transition-opacity duration-300 lg:hidden ${
+            className={`fixed inset-0 bg-base z-60 transition-opacity duration-300 lg:hidden ${
               isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
             onClick={() => setIsMobileMenuOpen(false)}
@@ -182,7 +182,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
 
           {/* Drawer */}
           <div
-            className={`fixed inset-0 z-[70] lg:hidden transition-transform duration-300 ease-out ${
+            className={`fixed inset-0 z-70 lg:hidden transition-transform duration-300 ease-out ${
               isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
             aria-hidden={!isMobileMenuOpen}
@@ -192,7 +192,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
               <div className="flex items-center justify-end p-6">
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg active:text-accent"
+                  className="p-2 text-text-primary transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg active:text-accent"
                   aria-label="Close mobile menu"
                 >
                   <XMarkIcon className="w-6 h-6" />
@@ -208,7 +208,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                         <Link
                           href={link.href}
                           onClick={handleLinkClick}
-                          className="block py-4 text-text-primary transition-colors duration-200 font-medium text-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 active:text-accent"
+                          className="block py-4 text-text-primary transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 active:text-accent"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -223,7 +223,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                             const targetId = link.href.replace('#', '');
                             scrollToSection(targetId);
                           }}
-                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
+                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
                         >
                           {link.label}
                         </a>

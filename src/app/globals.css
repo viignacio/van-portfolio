@@ -1,6 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility section-padding {
+  /* Custom spacing utilities */
+  @apply py-20 lg:py-24;
+}
+
+@utility container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+@utility h-screen-dynamic {
+  /* Full viewport height utility */
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  min-height: 100vh; /* Fallback for older browsers */
+}
+
+@utility grid-12 {
+  /* Grid utilities */
+  @apply grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6;
+}
+
+@utility animate-on-scroll {
+  /* Animation utilities */
+  @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+
+  &.animate {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@utility animate {
+  &.animate-on-scroll {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@utility will-change-scroll {
+  /* Scroll performance utilities */
+  will-change: scroll-position;
+  backface-visibility: hidden;
+}
 
 @layer base {
   :root {
@@ -40,44 +100,4 @@
   ::selection {
     @apply bg-accent text-accent-fg;
   }
-}
-
-@layer utilities {
-  /* Custom spacing utilities */
-  .section-padding {
-    @apply py-20 lg:py-24;
-  }
-  
-  .container-padding {
-    @apply px-4 sm:px-6 lg:px-8;
-  }
-  
-  /* Full viewport height utility */
-  .h-screen-dynamic {
-    height: 100vh;
-    height: 100dvh; /* Dynamic viewport height for mobile browsers */
-    min-height: 100vh; /* Fallback for older browsers */
-  }
-  
-  /* Grid utilities */
-  .grid-12 {
-    @apply grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6;
-  }
-  
-  /* Animation utilities */
-  .animate-on-scroll {
-    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
-  }
-  
-  .animate-on-scroll.animate {
-    @apply opacity-100 translate-y-0;
-  }
-  
-  /* Scroll performance utilities */
-  .will-change-scroll {
-    will-change: scroll-position;
-    backface-visibility: hidden;
-  }
-  
-
 }

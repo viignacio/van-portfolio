@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowTopRightOnSquareIcon, CodeBracketIcon, EyeIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { ProjectsSection as ProjectsSectionType, Project } from '@/lib/cms/types';
 
@@ -206,7 +206,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                         return (
                           <div 
                             key={project._id} 
-                            className="w-full flex-shrink-0 flex flex-col"
+                            className="w-full shrink-0 flex flex-col"
                           >
                             <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-8 items-stretch pt-4 px-4 pb-8 lg:pt-8 lg:pr-20 lg:pl-20 flex-1">
                               {/* Project Image */}
@@ -218,10 +218,10 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                                       alt={project.title}
                                       className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
                                   </div>
                                 ) : (
-                                  <div className="w-full h-40 lg:aspect-square lg:h-auto bg-gradient-to-br from-accent/20 to-base-700 rounded-xl flex items-center justify-center">
+                                  <div className="w-full h-40 lg:aspect-square lg:h-auto bg-linear-to-br from-accent/20 to-base-700 rounded-xl flex items-center justify-center">
                                     <div className="text-center text-text-secondary">
                                       <div className="text-4xl mb-2">🖼️</div>
                                       <div className="text-sm">Project Image</div>
@@ -254,7 +254,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                                     {!isDescriptionExpanded(project._id) && (
                                       <button
                                         onClick={() => toggleDescription(project._id)}
-                                        className="lg:hidden !text-accent hover:!text-[#38bdf8] font-medium text-base transition-all duration-200 active:scale-95 active:opacity-80"
+                                        className="lg:hidden text-accent! hover:text-[#38bdf8]! font-medium text-base transition-all duration-200 active:scale-95 active:opacity-80"
                                       >
                                         Read more about {project.title}
                                       </button>
@@ -263,7 +263,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                                     {isDescriptionExpanded(project._id) && (
                                       <button
                                         onClick={() => toggleDescription(project._id)}
-                                        className="lg:hidden !text-accent hover:!text-[#38bdf8] font-medium text-base transition-all duration-200 active:scale-95 active:opacity-80"
+                                        className="lg:hidden text-accent! hover:text-[#38bdf8]! font-medium text-base transition-all duration-200 active:scale-95 active:opacity-80"
                                       >
                                         Read less
                                       </button>
@@ -300,7 +300,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                                 )}
 
                                 {/* Spacer to push buttons to bottom */}
-                                <div className="flex-grow"></div>
+                                <div className="grow"></div>
 
                                 {/* Project Actions */}
                                 <div className="flex gap-4 pt-4 mt-auto">
