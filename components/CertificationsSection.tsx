@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { urlFor } from '@/lib/sanity/image';
+import MediaRenderer from '@/components/MediaRenderer';
 import { useMouseGlow } from '@/hooks/useMouseGlow';
 import type { CertificationsSection as CertificationsSectionType, Certification } from '@/lib/cms/types';
 
@@ -47,10 +47,11 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
         <div className="relative z-10 space-y-4 flex-1 flex flex-col">
           {certification.image && (
             <div className="relative overflow-hidden rounded-xl w-full aspect-video">
-              <img
-                src={urlFor(certification.image).width(800).quality(80).auto('format').url()}
+              <MediaRenderer
+                media={{ mediaType: 'image', image: certification.image }}
                 alt={certification.title}
                 className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
+                quality={80}
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
             </div>

@@ -18,7 +18,13 @@ export async function getHomePage() {
       ...,
       heroSection{
         ...,
-        profileImage{ asset, hotspot, crop }
+        profileImage{ asset, hotspot, crop },
+        background{
+          overlay,
+          type,
+          image{ asset, hotspot, crop },
+          "videoUrl": video.asset->url
+        }
       },
       projectsSection{
         headline,
