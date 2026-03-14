@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 // Custom hook for mouse tracking glow effect
@@ -262,14 +262,14 @@ export default function StyleGuide() {
             <div>
               <h3 className="text-xl font-semibold mb-4 text-text-secondary">Timeline Component</h3>
               <div className="relative max-w-2xl">
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent"></div>
+                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent via-accent/50 to-transparent"></div>
                 
                 <div className="relative mb-6">
                   <div className="absolute left-3.5 top-6 w-6 h-6 bg-accent rounded-full border-4 border-base-900 shadow-lg"></div>
                   <div className="card ml-16 relative overflow-hidden">
                     <h4 className="text-xl font-bold text-text-primary mb-2">Sample Position</h4>
                     <div className="flex items-center gap-2 text-text-secondary mb-4">
-                      <div className="w-5 h-5 bg-text-secondary rounded"></div>
+                      <div className="w-5 h-5 bg-text-secondary rounded-sm"></div>
                       <span className="font-medium">Sample Company</span>
                     </div>
                     <div className="text-sm text-text-muted">January 2020 - Present</div>
@@ -311,7 +311,7 @@ export default function StyleGuide() {
                     <div className="relative z-10">
                       <h4 className="text-xl font-bold text-text-primary mb-2">Interactive Timeline Card</h4>
                       <div className="flex items-center gap-2 text-text-secondary mb-4">
-                        <div className="w-5 h-5 bg-text-secondary rounded"></div>
+                        <div className="w-5 h-5 bg-text-secondary rounded-sm"></div>
                         <span className="font-medium">Interactive Company</span>
                       </div>
                       <div className="text-sm text-text-muted">March 2018 - December 2019</div>
@@ -358,11 +358,11 @@ export default function StyleGuide() {
                     {/* Carousel Slides */}
                     <div className="flex transition-transform duration-500 ease-out">
                       {/* Slide 1 */}
-                      <div className="w-full flex-shrink-0">
+                      <div className="w-full shrink-0">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
                           {/* Image Placeholder */}
                           <div className="relative">
-                            <div className="w-full h-80 bg-gradient-to-br from-accent/20 to-base-700 rounded-xl flex items-center justify-center">
+                            <div className="w-full h-80 bg-linear-to-br from-accent/20 to-base-700 rounded-xl flex items-center justify-center">
                               <div className="text-center text-text-secondary">
                                 <div className="text-4xl mb-2">🖼️</div>
                                 <div className="text-sm">Project Image</div>
@@ -414,11 +414,11 @@ export default function StyleGuide() {
                       </div>
                       
                       {/* Slide 2 */}
-                      <div className="w-full flex-shrink-0">
+                      <div className="w-full shrink-0">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
                           {/* Image Placeholder */}
                           <div className="relative">
-                            <div className="w-full h-80 bg-gradient-to-br from-base-700 to-accent/20 rounded-xl flex items-center justify-center">
+                            <div className="w-full h-80 bg-linear-to-br from-base-700 to-accent/20 rounded-xl flex items-center justify-center">
                               <div className="text-center text-text-secondary">
                                 <div className="text-4xl mb-2">🚀</div>
                                 <div className="text-sm">Project Image</div>
@@ -470,11 +470,11 @@ export default function StyleGuide() {
                       </div>
                       
                       {/* Slide 3 */}
-                      <div className="w-full flex-shrink-0">
+                      <div className="w-full shrink-0">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
                           {/* Image Placeholder */}
                           <div className="relative">
-                            <div className="w-full h-80 bg-gradient-to-br from-accent/30 to-base-600 rounded-xl flex items-center justify-center">
+                            <div className="w-full h-80 bg-linear-to-br from-accent/30 to-base-600 rounded-xl flex items-center justify-center">
                               <div className="text-center text-text-secondary">
                                 <div className="text-4xl mb-2">💡</div>
                                 <div className="text-sm">Project Image</div>
@@ -554,11 +554,11 @@ export default function StyleGuide() {
                 <div className="bg-base-800 p-6 rounded-lg border border-base-700">
                   <h5 className="text-lg font-semibold mb-3 text-text-secondary">Implementation Details</h5>
                   <div className="space-y-3 text-sm text-text-secondary">
-                    <div><span className="text-accent">Container:</span> <code className="bg-base-700 px-2 py-1 rounded">relative overflow-hidden rounded-2xl</code></div>
-                    <div><span className="text-accent">Slides:</span> <code className="bg-base-700 px-2 py-1 rounded">flex transition-transform duration-500 ease-out</code></div>
-                    <div><span className="text-accent">Navigation:</span> <code className="bg-base-700 px-2 py-1 rounded">absolute left-4 top-1/2 -translate-y-1/2</code></div>
-                    <div><span className="text-accent">Dots:</span> <code className="bg-base-700 px-2 py-1 rounded">flex justify-center mt-8 pb-6</code></div>
-                    <div><span className="text-accent">Responsive:</span> <code className="bg-base-700 px-2 py-1 rounded">grid-cols-1 lg:grid-cols-2 gap-12</code></div>
+                    <div><span className="text-accent">Container:</span> <code className="bg-base-700 px-2 py-1 rounded-sm">relative overflow-hidden rounded-2xl</code></div>
+                    <div><span className="text-accent">Slides:</span> <code className="bg-base-700 px-2 py-1 rounded-sm">flex transition-transform duration-500 ease-out</code></div>
+                    <div><span className="text-accent">Navigation:</span> <code className="bg-base-700 px-2 py-1 rounded-sm">absolute left-4 top-1/2 -translate-y-1/2</code></div>
+                    <div><span className="text-accent">Dots:</span> <code className="bg-base-700 px-2 py-1 rounded-sm">flex justify-center mt-8 pb-6</code></div>
+                    <div><span className="text-accent">Responsive:</span> <code className="bg-base-700 px-2 py-1 rounded-sm">grid-cols-1 lg:grid-cols-2 gap-12</code></div>
                   </div>
                 </div>
               </div>
@@ -640,10 +640,10 @@ export default function StyleGuide() {
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Responsive Grid Example</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                <div className="bg-accent/20 p-4 rounded text-center text-sm">1 col (mobile)</div>
-                <div className="bg-accent/20 p-4 rounded text-center text-sm">2 cols (sm+)</div>
-                <div className="bg-accent/20 p-4 rounded text-center text-sm">3 cols (lg+)</div>
-                <div className="bg-accent/20 p-4 rounded text-center text-sm">4 cols (xl+)</div>
+                <div className="bg-accent/20 p-4 rounded-sm text-center text-sm">1 col (mobile)</div>
+                <div className="bg-accent/20 p-4 rounded-sm text-center text-sm">2 cols (sm+)</div>
+                <div className="bg-accent/20 p-4 rounded-sm text-center text-sm">3 cols (lg+)</div>
+                <div className="bg-accent/20 p-4 rounded-sm text-center text-sm">4 cols (xl+)</div>
               </div>
             </div>
           </div>
@@ -656,53 +656,53 @@ export default function StyleGuide() {
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Container Consistency</h3>
               <ul className="space-y-2 text-sm text-text-secondary">
-                <li>• Hero sections: <code className="bg-base-700 px-2 py-1 rounded">h-screen-dynamic bg-base relative overflow-hidden</code></li>
-                <li>• Content sections: <code className="bg-base-700 px-2 py-1 rounded">bg-base</code></li>
-                <li>• Standard sections: <code className="bg-base-700 px-2 py-1 rounded">container mx-auto px-8</code></li>
-                <li>• Hero content container: <code className="bg-base-700 px-2 py-1 rounded">w-4/5 mx-auto p-8</code></li>
+                <li>• Hero sections: <code className="bg-base-700 px-2 py-1 rounded-sm">h-screen-dynamic bg-base relative overflow-hidden</code></li>
+                <li>• Content sections: <code className="bg-base-700 px-2 py-1 rounded-sm">bg-base</code></li>
+                <li>• Standard sections: <code className="bg-base-700 px-2 py-1 rounded-sm">container mx-auto px-8</code></li>
+                <li>• Hero content container: <code className="bg-base-700 px-2 py-1 rounded-sm">w-4/5 mx-auto p-8</code></li>
               </ul>
             </div>
 
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Section Spacing & Layout</h3>
               <ul className="space-y-2 text-sm text-text-secondary">
-                <li>• Hero section: <code className="bg-base-700 px-2 py-1 rounded">h-screen-dynamic</code> (dynamic viewport height)</li>
-                <li>• Section padding: <code className="bg-base-700 px-2 py-1 rounded">py-20</code> (80px vertical)</li>
-                <li>• Content spacing: <code className="bg-base-700 px-2 py-1 rounded">space-y-16</code> (64px between sections)</li>
-                <li>• Hero content: <code className="bg-base-700 px-2 py-1 rounded">p-8 -mt-32</code> (32px padding, -128px top margin)</li>
-                <li>• Component spacing: <code className="bg-base-700 px-2 py-1 rounded">space-y-8</code> (32px between elements)</li>
+                <li>• Hero section: <code className="bg-base-700 px-2 py-1 rounded-sm">h-screen-dynamic</code> (dynamic viewport height)</li>
+                <li>• Section padding: <code className="bg-base-700 px-2 py-1 rounded-sm">py-20</code> (80px vertical)</li>
+                <li>• Content spacing: <code className="bg-base-700 px-2 py-1 rounded-sm">space-y-16</code> (64px between sections)</li>
+                <li>• Hero content: <code className="bg-base-700 px-2 py-1 rounded-sm">p-8 -mt-32</code> (32px padding, -128px top margin)</li>
+                <li>• Component spacing: <code className="bg-base-700 px-2 py-1 rounded-sm">space-y-8</code> (32px between elements)</li>
               </ul>
             </div>
 
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Typography Scale</h3>
               <ul className="space-y-2 text-sm text-text-secondary">
-                <li>• Main headings: <code className="bg-base-700 px-2 py-1 rounded">text-4xl md:text-8xl</code></li>
-                <li>• Section headings: <code className="bg-base-700 px-2 py-1 rounded">text-3xl</code></li>
-                <li>• Sub-headings: <code className="bg-base-700 px-2 py-1 rounded">text-xl md:text-4xl</code></li>
-                <li>• Body text: <code className="bg-base-700 px-2 py-1 rounded">text-lg md:text-xl</code></li>
-                <li>• Taglines: <code className="bg-base-700 px-2 py-1 rounded">text-lg md:text-xl leading-relaxed</code></li>
+                <li>• Main headings: <code className="bg-base-700 px-2 py-1 rounded-sm">text-4xl md:text-8xl</code></li>
+                <li>• Section headings: <code className="bg-base-700 px-2 py-1 rounded-sm">text-3xl</code></li>
+                <li>• Sub-headings: <code className="bg-base-700 px-2 py-1 rounded-sm">text-xl md:text-4xl</code></li>
+                <li>• Body text: <code className="bg-base-700 px-2 py-1 rounded-sm">text-lg md:text-xl</code></li>
+                <li>• Taglines: <code className="bg-base-700 px-2 py-1 rounded-sm">text-lg md:text-xl leading-relaxed</code></li>
               </ul>
             </div>
 
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Animation Standards</h3>
               <ul className="space-y-2 text-sm text-text-secondary">
-                <li>• Duration: <code className="bg-base-700 px-2 py-1 rounded">duration: 0.6</code></li>
-                <li>• Stagger delay: <code className="bg-base-700 px-2 py-1 rounded">delay: index * 0.2</code></li>
-                <li>• Viewport: <code className="bg-base-700 px-2 py-1 rounded">viewport: {`{ once: true }`}`</code></li>
-                <li>• Initial state: <code className="bg-base-700 px-2 py-1 rounded">initial: {`{ opacity: 0, y: 20 }`}`</code></li>
-                <li>• Animate state: <code className="bg-base-700 px-2 py-1 rounded">animate: {`{ opacity: 1, y: 0 }`}`</code></li>
+                <li>• Duration: <code className="bg-base-700 px-2 py-1 rounded-sm">duration: 0.6</code></li>
+                <li>• Stagger delay: <code className="bg-base-700 px-2 py-1 rounded-sm">delay: index * 0.2</code></li>
+                <li>• Viewport: <code className="bg-base-700 px-2 py-1 rounded-sm">viewport: {`{ once: true }`}`</code></li>
+                <li>• Initial state: <code className="bg-base-700 px-2 py-1 rounded-sm">initial: {`{ opacity: 0, y: 20 }`}`</code></li>
+                <li>• Animate state: <code className="bg-base-700 px-2 py-1 rounded-sm">animate: {`{ opacity: 1, y: 0 }`}`</code></li>
               </ul>
             </div>
 
             <div className="bg-base-800 p-6 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 text-text-secondary">Z-Index & Layering</h3>
               <ul className="space-y-2 text-sm text-text-secondary">
-                <li>• Background elements: <code className="bg-base-700 px-2 py-1 rounded">z-0</code></li>
-                <li>• Gradient overlays: <code className="bg-base-700 px-2 py-1 rounded">z-10</code></li>
-                <li>• Main content: <code className="bg-base-700 px-2 py-1 rounded">z-20</code></li>
-                <li>• Hero content: <code className="bg-base-700 px-2 py-1 rounded">relative z-20</code></li>
+                <li>• Background elements: <code className="bg-base-700 px-2 py-1 rounded-sm">z-0</code></li>
+                <li>• Gradient overlays: <code className="bg-base-700 px-2 py-1 rounded-sm">z-10</code></li>
+                <li>• Main content: <code className="bg-base-700 px-2 py-1 rounded-sm">z-20</code></li>
+                <li>• Hero content: <code className="bg-base-700 px-2 py-1 rounded-sm">relative z-20</code></li>
               </ul>
             </div>
           </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { CertificationsSection as CertificationsSectionType, Certification } from '@/lib/cms/types';
 
@@ -190,7 +190,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
                   alt={certification.title}
                   className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             )}
 
@@ -209,12 +209,12 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
             <div className="space-y-2">
               {certification.issueDate && (
                 <div className="flex items-center gap-2 text-sm text-text-muted">
-                  <CalendarIcon className="w-4 h-4 flex-shrink-0" />
+                  <CalendarIcon className="w-4 h-4 shrink-0" />
                   <span>Issued: {formatDate(certification.issueDate)}</span>
                 </div>
               )}
               <div className="flex items-center gap-2 text-sm text-text-muted">
-                <CalendarIcon className="w-4 h-4 flex-shrink-0" />
+                <CalendarIcon className="w-4 h-4 shrink-0" />
                 <span>
                   {certification.expirationDate && certification.expirationDate.trim()
                     ? `Expires: ${formatDate(certification.expirationDate)}`
@@ -251,7 +251,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
             )}
 
             {/* Spacer to push button to bottom */}
-            <div className="flex-grow"></div>
+            <div className="grow"></div>
 
             {/* View Certificate Button */}
             {certification.credentialUrl && (
@@ -351,7 +351,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
                     {certifications.map((certification, index) => (
                       <div 
                         key={certification._id} 
-                        className="w-full flex-shrink-0 px-2"
+                        className="w-full shrink-0 px-2"
                       >
                         {renderCertificationCard(certification, index)}
                       </div>

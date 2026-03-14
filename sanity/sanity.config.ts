@@ -1,5 +1,5 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 
@@ -8,11 +8,11 @@ const SINGLETON_TYPES = ['navbar', 'footer'] as const
 export default defineConfig({
   name: 'default',
   title: 'van-portfolio',
-  projectId: 'givnzkpy',
+  projectId: 'gw2ay2qy',
   dataset: 'production',
 
   plugins: [
-    deskTool({
+    structureTool({
       structure: (S) =>
         S.list()
           .title('Contents')

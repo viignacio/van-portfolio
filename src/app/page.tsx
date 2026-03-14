@@ -92,7 +92,7 @@ export default function Home() {
                 {BackgroundComponent}
                 
                 {/* Subtle gradient overlay for navbar readability */}
-                <div className="absolute inset-0 bg-gradient-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10"></div>
                 
                 <div className="h-full flex items-center justify-start relative z-20 pointer-events-none">
                   <div className="pointer-events-auto relative z-20 px-4 lg:w-4/5 lg:mx-auto lg:p-8">

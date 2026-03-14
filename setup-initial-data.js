@@ -2,7 +2,7 @@ const { createClient } = require('@sanity/client');
 
 // Sanity client configuration
 const client = createClient({
-  projectId: 'givnzkpy',
+  projectId: 'gw2ay2qy',
   dataset: 'production',
   apiVersion: '2024-01-01',
   useCdn: false,
@@ -47,7 +47,7 @@ async function setupInitialData() {
       isActive: true,
       backgroundStyle: {
         type: 'solid',
-        solidColor: '!bg-sky-50'
+        solidColor: 'bg-sky-50!'
       },
       spacing: {
         paddingY: 'py-24',
