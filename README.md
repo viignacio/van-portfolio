@@ -1,30 +1,29 @@
 # QA Automation Engineer Portfolio
 
-A modern, responsive portfolio website showcasing QA automation expertise, built with Next.js, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website showcasing QA automation expertise, built with Next.js, TypeScript, Tailwind CSS, and Sanity CMS.
 
 ## Features
 
-- 🎨 Modern, responsive design with dark/light mode
-- 📱 Mobile-first approach
-- 🚀 Fast page loads with Next.js
-- 🎯 SEO optimized
-- 📝 Blog section for sharing testing insights
-- 🔍 Automated testing with Jest and Cypress
-- 🐳 Docker support
-- 🔄 CI/CD with GitHub Actions
+- Modern, responsive design with dark mode
+- Mobile-first approach
+- Fast page loads with Next.js
+- SEO optimized
+- CMS-driven content via Sanity Studio
+- E2E testing with Cypress
+- Auto-deploy to Vercel on push to `main`
 
 ## Prerequisites
 
-- Node.js 18.x or later
-- npm 9.x or later
+- Node.js 20.x or later
+- npm 10.x or later
 - Git
 
 ## Getting Started
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/qa-portfolio.git
-   cd qa-portfolio
+   git clone https://github.com/viignacio-iona/van-portfolio.git
+   cd van-portfolio
    ```
 
 2. Install dependencies:
@@ -32,56 +31,59 @@ A modern, responsive portfolio website showcasing QA automation expertise, built
    npm install
    ```
 
-3. Run the development server:
+3. Set up environment variables — create `.env.local`:
+   ```env
+   NEXT_PUBLIC_SANITY_PROJECT_ID=<project_id>
+   NEXT_PUBLIC_SANITY_DATASET=<dataset>
+   NEXT_PUBLIC_SANITY_API_VERSION=<version>>
+   SANITY_API_TOKEN=<sanity_token>
+   EMAIL_USER=apikey
+   EMAIL_PASSWORD=<sendgrid_api_key>
+   EMAIL_FROM=<verified_sender>
+   EMAIL_TO=<recipient>
+   ```
+
+4. Run the development server:
    ```bash
    npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Testing
 
-Run the test suite:
-
 ```bash
-# Unit tests
-npm test
-
-# E2E tests
+# E2E tests (interactive)
 npm run cypress:open
+
+# E2E tests (headless)
+npm run test:e2e
 ```
 
 ## Building for Production
 
 ```bash
 npm run build
-```
-
-## Docker
-
-Build and run with Docker:
-
-```bash
-# Build the image
-docker build -t qa-portfolio .
-
-# Run the container
-docker run -p 3000:3000 qa-portfolio
+npm run start
 ```
 
 ## Deployment
 
-The site is configured to deploy automatically to GitHub Pages when pushing to the main branch. The deployment process is handled by GitHub Actions.
+The site deploys automatically to Vercel on every push to `main`. No manual steps required.
 
-1. Fork this repository
-2. Enable GitHub Pages in your repository settings
-3. Push to main branch to trigger deployment
+To deploy your own instance:
 
-## Customization
+1. Import the repository in [Vercel](https://vercel.com)
+2. Add the environment variables from `.env.local` to the Vercel project settings
+3. Push to `main` to trigger a deployment
 
-1. Update content in `src/data/` directory
-2. Modify styles in `src/styles/`
-3. Add your own components in `src/components/`
+## Content Management
+
+All content is managed through Sanity CMS. To update content:
+
+1. Go to `/studio` on the running app
+2. Edit content in Sanity Studio
+3. Publish — changes reflect immediately in production
 
 ## License
 
@@ -89,6 +91,4 @@ MIT
 
 ## Contact
 
-Van Ian Ignacio - [linkedin](https://www.linkedin.com/in/viignacio-ctfl/) - van.ignacio@ionacommerce.com
-
-Project Link: [https://github.com/viignacio-iona/van-portfolio](https://github.com/viignacio-iona/van-portfolio)
+Van Ian Ignacio — [LinkedIn](https://www.linkedin.com/in/viignacio-ctfl/) — van.ignacio@ionacommerce.com
