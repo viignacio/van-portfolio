@@ -40,7 +40,7 @@ export default function Hero({ data }: HeroProps) {
         </div>
       )}
 
-      <div className="p-8 -mt-32">
+      <div className="px-0 py-6 lg:p-8 lg:-mt-32">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
