@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { buildSanityImageUrl } from '@/lib/sanity/imageUrl';
 import { CertificationsSection as CertificationsSectionType, Certification } from '@/lib/cms/types';
 
 // Custom hook for mouse tracking glow effect
@@ -186,7 +187,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
             {certification.image && (
               <div className="relative overflow-hidden rounded-xl w-full aspect-video">
                 <img
-                  src={certification.image.asset.url}
+                  src={buildSanityImageUrl(certification.image.asset.url, { width: 800, quality: 80 })}
                   alt={certification.title}
                   className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
                 />

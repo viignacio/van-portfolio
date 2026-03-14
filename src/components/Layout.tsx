@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { buildSanityImageUrl } from '@/lib/sanity/imageUrl';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -101,9 +102,9 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
               <div className="shrink-0">
                 {navbarData.logo?.asset?.url && (
                   <div className="relative h-12 w-32">
-                    <Image 
-                      src={navbarData.logo.asset.url} 
-                      alt="Logo" 
+                    <Image
+                      src={buildSanityImageUrl(navbarData.logo.asset.url, { width: 256, height: 96 })!}
+                      alt="Logo"
                       fill
                       className="object-contain"
                       priority

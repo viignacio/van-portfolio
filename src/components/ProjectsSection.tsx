@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { buildSanityImageUrl } from '@/lib/sanity/imageUrl';
 import { ArrowTopRightOnSquareIcon, CodeBracketIcon, EyeIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { ProjectsSection as ProjectsSectionType, Project } from '@/lib/cms/types';
 
@@ -214,7 +215,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
                                 {project.image ? (
                                   <div className="relative overflow-hidden rounded-xl group w-full h-40 lg:aspect-square lg:h-auto">
                                     <img
-                                      src={project.image.asset.url}
+                                      src={buildSanityImageUrl(project.image.asset.url, { width: 800, quality: 75 })}
                                       alt={project.title}
                                       className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
                                     />

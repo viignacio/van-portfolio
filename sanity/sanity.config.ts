@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {media} from 'sanity-plugin-media'
 import {schemaTypes} from './schemaTypes'
 
 const SINGLETON_TYPES = ['navbar', 'footer'] as const
@@ -10,6 +11,7 @@ export default defineConfig({
   title: 'van-portfolio',
   projectId: 'gw2ay2qy',
   dataset: 'production',
+  basePath: '/studio',
 
   plugins: [
     structureTool({
@@ -46,6 +48,7 @@ export default defineConfig({
           ]),
     }),
     visionTool(),
+    media(),
   ],
 
   // Keep Navbar/Footer as singletons

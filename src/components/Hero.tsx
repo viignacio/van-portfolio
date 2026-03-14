@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import { buildSanityImageUrl } from '@/lib/sanity/imageUrl';
 import { motion } from 'motion/react';
 
 interface HeroProps {
@@ -41,7 +42,7 @@ export default function Hero({ data }: HeroProps) {
         <div className="mb-8 flex justify-start">
           <div className="relative">
             <img
-              src={profileImage.asset.url}
+              src={buildSanityImageUrl(profileImage.asset.url, { width: 256, height: 256, fit: 'crop' })!}
               alt={fullName || 'Profile'}
               className="w-32 h-32 rounded-full object-cover border-4 border-text-muted shadow-2xl"
             />

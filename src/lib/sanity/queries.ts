@@ -134,25 +134,9 @@ export async function getHomePage() {
   }`;
   
   try {
-    console.log('Attempting to fetch homepage data from Sanity...');
-    console.log('Query:', query);
-    console.log('Client config:', {
-      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-      apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-05-22',
-      useCdn: process.env.NODE_ENV === 'production' ? false : true
-    });
-    
-    const result = await sanityClient.fetch(query);
-    console.log('Homepage data fetched successfully:', result);
-    return result;
+    return await sanityClient.fetch(query, {}, { next: { revalidate: 3600 } });
   } catch (error) {
-    console.error('Error fetching homepage data:', error);
-    console.error('Error details:', {
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      name: error instanceof Error ? error.name : undefined
-    });
+    console.error('Error fetching homepage data:', error instanceof Error ? error.message : error);
     return null;
   }
 } 
