@@ -50,24 +50,17 @@
 }
 
 @layer base {
-  :root {
-    font-family: 'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif;
-  }
-
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
 
   body {
+    @apply font-body text-text-primary bg-base antialiased;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
-  }
-
-  body {
-    @apply font-body text-text-primary bg-base antialiased;
-    line-height: 1.7;
   }
 
   h1, h2, h3, h4, h5, h6 {

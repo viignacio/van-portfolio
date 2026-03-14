@@ -42,8 +42,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Poppins', 'Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 6px 24px rgba(0,0,0,0.25)',
