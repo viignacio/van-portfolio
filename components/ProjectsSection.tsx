@@ -14,6 +14,8 @@ import type { ProjectsSection as ProjectsSectionType, Project } from '@/lib/cms/
 
 const swiftEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+const ctaButtonClass = "flex items-center gap-2 px-4 py-2.5 lg:px-6 lg:py-4 bg-ui-card text-text-primary lg:text-white rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-sm lg:text-base font-semibold border border-base-700 active:scale-95 active:opacity-80";
+
 const slideVariants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 40 : -40,
@@ -110,8 +112,8 @@ function ProjectCard({
               </button>
               <div className={`overflow-hidden transition-all duration-300 lg:block ${isTechExpanded ? 'max-h-96' : 'max-h-0 lg:max-h-none'}`}>
                 <div className="flex flex-wrap gap-2 pt-4 lg:pt-0">
-                  {project.techStack.map((tech, i) => (
-                    <span key={i} className="px-4 py-2 bg-ui-card text-sm text-primary font-medium rounded-lg border border-base-700">
+                  {project.techStack.map((tech) => (
+                    <span key={tech} className="px-4 py-2 bg-ui-card text-sm text-primary font-medium rounded-lg border border-base-700">
                       {tech}
                     </span>
                   ))}
@@ -122,13 +124,13 @@ function ProjectCard({
 
           <div className="flex gap-3 lg:gap-4 mt-auto">
             {project.demoUrl && (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 lg:px-6 lg:py-4 bg-ui-card text-text-primary lg:text-white rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-sm lg:text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={ctaButtonClass}>
                 <EyeIcon className="w-4 h-4 lg:w-5 lg:h-5" />
                 {project.demoCta || 'Live Demo'}
               </a>
             )}
             {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 lg:px-6 lg:py-4 bg-ui-card text-text-primary lg:text-white rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-sm lg:text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={ctaButtonClass}>
                 <CodeBracketIcon className="w-4 h-4 lg:w-5 lg:h-5" />
                 View Code
               </a>
@@ -159,17 +161,14 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
 
   const minSwipeDistance = 50;
 
-  const nextSlide = () => {
-    setDirection(1);
-    setCurrentSlide((prev) => (prev + 1) % projects.length);
-    setExpandedTechSections(new Set());
+  const navigate = (dir: 1 | -1) => {
+    setDirection(dir);
+    setCurrentSlide((prev) => (prev + dir + projects.length) % projects.length);
+    setExpandedTechSections((prev) => (prev.size > 0 ? new Set() : prev));
   };
 
-  const prevSlide = () => {
-    setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
-    setExpandedTechSections(new Set());
-  };
+  const nextSlide = () => navigate(1);
+  const prevSlide = () => navigate(-1);
 
   const toggleTech = (id: string) => setExpandedTechSections(prev => {
     const next = new Set(prev);
