@@ -186,7 +186,13 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
-          <Bars3Icon className="w-6 h-6" />
+          {logoUrl ? (
+            <div className="relative h-8 w-8">
+              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority unoptimized />
+            </div>
+          ) : (
+            <Bars3Icon className="w-6 h-6" />
+          )}
         </button>
       )}
 
