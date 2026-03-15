@@ -30,7 +30,7 @@ export default async function Home() {
   }
 
   const logoUrl = pageData?.navbar?.logo?.asset?._ref
-    ? urlFor(pageData.navbar.logo).width(256).height(96).auto('format').url()
+    ? urlFor(pageData.navbar.logo).width(128).height(128).fit('fill').auto('format').url()
     : undefined;
 
   return (
