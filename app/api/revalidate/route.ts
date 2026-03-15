@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get('secret');
@@ -9,6 +9,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    revalidateTag('homepage', 'default');
     revalidatePath('/', 'layout');
     return NextResponse.json({ revalidated: true, timestamp: new Date().toISOString() });
   } catch (err) {
