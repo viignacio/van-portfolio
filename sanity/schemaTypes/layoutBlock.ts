@@ -74,7 +74,7 @@ export default {
     },
     prepare({ title }: any) {
       return {
-        title: `${title.charAt(0).toUpperCase() + title.slice(1)} Section`
+        title: title ? `${title.charAt(0).toUpperCase() + title.slice(1)} Section` : 'Untitled Block'
       };
     }
   }
