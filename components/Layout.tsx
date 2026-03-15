@@ -29,7 +29,7 @@ interface LayoutProps {
 
 export default function Layout({ children, logoUrl, navbarData, footerData }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
   const isManuallyExpandedRef = useRef(false);
   const expandedAtRef = useRef(0);
@@ -47,7 +47,10 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setScrollY(y);
+      setIsAtTop(prev => {
+        const atTop = y < 150;
+        return prev === atTop ? prev : atTop;
+      });
       if (isManuallyExpandedRef.current && Math.abs(y - expandedAtRef.current) > 30) {
         setManuallyExpanded(false);
       }
@@ -56,11 +59,10 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isAtTop = scrollY < 150;
   const showExpanded = isAtTop || isManuallyExpanded;
 
   const handlePillClick = () => {
-    expandedAtRef.current = scrollY;
+    expandedAtRef.current = window.scrollY;
     setManuallyExpanded(true);
   };
 
