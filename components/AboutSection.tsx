@@ -156,7 +156,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 </h3>
                 <div className="space-y-6">
                   {categoryOrder
-                    .filter(cat => technologyStack.technologies.some(t => t.category === cat))
+                    .filter(cat => technologyStack.technologies.some(t => (t.category || 'other') === cat))
                     .map(cat => (
                       <div key={cat}>
                         <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
@@ -164,7 +164,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {technologyStack.technologies
-                            .filter(t => t.category === cat)
+                            .filter(t => (t.category || 'other') === cat)
                             .sort((a, b) => proficiencyOrder.indexOf(a.proficiency ?? '') - proficiencyOrder.indexOf(b.proficiency ?? ''))
                             .map(tech => (
                               <div
@@ -178,25 +178,6 @@ export default function AboutSection({ data }: AboutSectionProps) {
                         </div>
                       </div>
                     ))}
-                  {technologyStack.technologies.some(t => !t.category) && (
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">Other</p>
-                      <div className="flex flex-wrap gap-2">
-                        {technologyStack.technologies
-                          .filter(t => !t.category)
-                          .sort((a, b) => proficiencyOrder.indexOf(a.proficiency ?? '') - proficiencyOrder.indexOf(b.proficiency ?? ''))
-                          .map(tech => (
-                            <div
-                              key={tech._key}
-                              className="flex items-center gap-1.5 bg-ui-card text-text-primary px-3 py-1.5 rounded-full border border-base-700 text-sm font-medium"
-                            >
-                              <ProficiencyIcon proficiency={tech.proficiency} />
-                              <span>{tech.name}</span>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             )}
