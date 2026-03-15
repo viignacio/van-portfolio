@@ -46,7 +46,7 @@ function ProjectCard({
 
   return (
     <div
-      className="relative bg-base-800 border border-base-700 rounded-2xl overflow-hidden h-[640px] lg:h-[560px]"
+      className="relative bg-base-800 border border-base-700 rounded-2xl overflow-hidden"
       onMouseMove={isDesktop ? handleMouseMove : undefined}
       onMouseEnter={isDesktop ? handleMouseEnter : undefined}
       onMouseLeave={isDesktop ? handleMouseLeave : undefined}
@@ -58,9 +58,9 @@ function ProjectCard({
         />
       )}
 
-      <div className="flex flex-col lg:grid lg:grid-cols-2 h-full relative z-10">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 relative z-10">
         {/* Image — flush to card edges, no inner card */}
-        <div className="relative overflow-hidden h-56 lg:h-full bg-base-900 shrink-0">
+        <div className="relative overflow-hidden h-44 lg:h-auto lg:self-stretch bg-base-900 shrink-0">
           {project.image ? (
             <MediaRenderer
               media={{ mediaType: 'image', image: project.image }}
@@ -78,12 +78,12 @@ function ProjectCard({
         </div>
 
         {/* Content */}
-        <div className="flex flex-col gap-6 p-10 min-h-0">
-          <h3 className="text-3xl font-bold text-text-primary">{project.title}</h3>
+        <div className="flex flex-col gap-4 lg:gap-6 p-6 lg:p-10 min-h-0">
+          <h3 className="text-2xl lg:text-3xl font-bold text-text-primary">{project.title}</h3>
 
           {project.description && (
             <div className="flex flex-col gap-2">
-              <p className="text-lg text-text-secondary leading-relaxed line-clamp-4">
+              <p className="text-base lg:text-lg text-text-secondary leading-relaxed line-clamp-4">
                 {project.description}
               </p>
               {project.description.length > 200 && (
@@ -105,7 +105,7 @@ function ProjectCard({
                 onClick={onToggleTech}
                 className="lg:pointer-events-none flex items-center justify-between w-full lg:mb-4 transition-all duration-200 active:scale-95 active:opacity-80"
               >
-                <h4 className="text-lg font-semibold text-text-primary">Technologies</h4>
+                <h4 className="text-base lg:text-lg font-semibold text-text-primary">Technologies</h4>
                 <ChevronDownIcon className={`w-5 h-5 text-text-primary transition-transform duration-300 lg:hidden ${isTechExpanded ? 'rotate-180' : ''}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 lg:block ${isTechExpanded ? 'max-h-96' : 'max-h-0 lg:max-h-none'}`}>
@@ -120,16 +120,16 @@ function ProjectCard({
             </div>
           )}
 
-          <div className="flex gap-4 mt-auto">
+          <div className="flex gap-3 lg:gap-4 mt-auto">
             {project.demoUrl && (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-4 bg-ui-card text-text-primary rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
-                <EyeIcon className="w-5 h-5" />
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 lg:px-6 lg:py-4 bg-ui-card text-text-primary lg:text-white rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-sm lg:text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
+                <EyeIcon className="w-4 h-4 lg:w-5 lg:h-5" />
                 {project.demoCta || 'Live Demo'}
               </a>
             )}
             {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-4 bg-ui-card text-text-primary rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
-                <CodeBracketIcon className="w-5 h-5" />
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 lg:px-6 lg:py-4 bg-ui-card text-text-primary lg:text-white rounded-xl lg:hover:bg-ui-card/80 lg:hover:border-accent lg:hover:text-accent lg:hover:scale-105 transition-all duration-200 text-sm lg:text-base font-semibold border border-base-700 active:scale-95 active:opacity-80">
+                <CodeBracketIcon className="w-4 h-4 lg:w-5 lg:h-5" />
                 View Code
               </a>
             )}
@@ -162,11 +162,13 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
   const nextSlide = () => {
     setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % projects.length);
+    setExpandedTechSections(new Set());
   };
 
   const prevSlide = () => {
     setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+    setExpandedTechSections(new Set());
   };
 
   const toggleTech = (id: string) => setExpandedTechSections(prev => {
