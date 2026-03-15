@@ -103,9 +103,9 @@ function ProjectSlide({
                 <ChevronDownIcon className={`w-5 h-5 text-text-primary transition-transform duration-300 lg:hidden ${isTechExpanded ? 'rotate-180' : ''}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 lg:block ${isTechExpanded ? 'max-h-96' : 'max-h-0 lg:max-h-none'}`}>
-                <div className="flex flex-wrap gap-3 pt-3 lg:pt-0">
+                <div className="flex flex-wrap gap-4 pt-4 lg:pt-0">
                   {project.techStack.map((tech, i) => (
-                    <span key={i} className="px-3 py-2 bg-ui-card text-sm text-primary font-medium rounded-lg border border-base-700">
+                    <span key={i} className="px-4 py-2 bg-ui-card text-sm text-primary font-medium rounded-lg border border-base-700">
                       {tech}
                     </span>
                   ))}
@@ -264,7 +264,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
 
               {projects.length > 1 && (
                 <div className="flex justify-center mt-4 pb-8">
-                  <div className="flex space-x-3">
+                  <div className="flex space-x-4">
                     {projects.map((_, i) => (
                       <button
                         key={i}
@@ -288,7 +288,7 @@ export default function ProjectsSection({ data }: ProjectsSectionProps) {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-center"
           >
-            <a href={ctaButton.url} className="inline-flex items-center gap-3 px-8 py-4 bg-transparent text-text-primary rounded-xl lg:hover:bg-ui-card/80 transition-all duration-300 text-lg font-semibold border border-base-700 lg:hover:border-accent lg:hover:scale-105 active:scale-95 active:opacity-80">
+            <a href={ctaButton.url} className="inline-flex items-center gap-4 px-8 py-4 bg-transparent text-text-primary rounded-xl lg:hover:bg-ui-card/80 transition-all duration-300 text-lg font-semibold border border-base-700 lg:hover:border-accent lg:hover:scale-105 active:scale-95 active:opacity-80">
               {ctaButton.text}
               <ArrowTopRightOnSquareIcon className="w-5 h-5" />
             </a>

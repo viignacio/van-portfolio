@@ -86,7 +86,7 @@ module.exports = {
           alignItems: 'center',
           justifyContent: 'center',
           gap: '.5rem',
-          padding: '.75rem 1rem',
+          padding: '1rem 1.5rem',
           borderRadius: '1rem',
           fontWeight: '600',
           transition: 'all 150ms',
@@ -124,7 +124,7 @@ module.exports = {
           backgroundColor: '#111111',
           border: '1px solid #1f2937',
           borderRadius: '1rem',
-          padding: '1.25rem',
+          padding: '1.5rem',
           boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
         },
         '.focus-ring': {
