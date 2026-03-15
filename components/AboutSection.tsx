@@ -152,7 +152,7 @@ function CareerCard({ entry, index, isDesktop }: { entry: CareerEntryType; index
           />
         )}
         {entry.isCurrent && (
-          <div className="absolute -top-2 -right-2 bg-accent text-accent-fg px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg z-10 whitespace-nowrap">
+          <div className="absolute -top-2 -right-2 bg-accent text-accent-fg px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-10 whitespace-nowrap">
             Current
           </div>
         )}
@@ -233,10 +233,10 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="space-y-6"
               >
-                <h3 className="text-2xl font-semibold text-text-primary mb-6">
+                <h3 className="text-2xl font-semibold text-text-primary">
                   {technologyStack.title || 'Technology Stack'}
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                   {technologyStack.technologies.map((tech, i) => (
                     <motion.div
                       key={tech._key}
@@ -246,7 +246,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                       transition={{ duration: 0.5, delay: i * 0.05 }}
                       className="group"
                     >
-                      <div className="bg-ui-card text-text-primary px-3 py-2 rounded-full border border-base-700 text-sm font-medium lg:hover:bg-ui-card/80 transition-all duration-300 cursor-pointer lg:group-hover:scale-105 flex items-center gap-2">
+                      <div className="bg-ui-card text-text-primary px-4 py-2 rounded-full border border-base-700 text-sm font-medium lg:hover:bg-ui-card/80 transition-all duration-300 cursor-pointer lg:group-hover:scale-105 flex items-center gap-2">
                         <span className="text-accent">{getTechnologyIcon(tech.name)}</span>
                         <span>{getTechnologyDisplayName(tech.name)}</span>
                       </div>
@@ -266,7 +266,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
           >
             {careerTimeline && careerTimeline.length > 0 && (
               <>
-                <h3 className="text-2xl font-semibold text-text-primary mb-8">Career History</h3>
+                <h3 className="text-2xl font-semibold text-text-primary">Career History</h3>
                 <div className="relative">
                   <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent via-accent/50 to-transparent" />
                   <div className="space-y-6">

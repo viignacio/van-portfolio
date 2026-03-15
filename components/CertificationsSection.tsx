@@ -244,7 +244,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
 
               {certifications.length > 1 && (
                 <div className="flex justify-center mt-4 pb-8">
-                  <div className="flex space-x-3">
+                  <div className="flex space-x-4">
                     {certifications.map((_, i) => (
                       <button
                         key={i}
