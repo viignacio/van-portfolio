@@ -71,22 +71,17 @@ export default {
         }
       ]
     },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime'
-    }
   ],
   preview: {
     select: {
       title: 'title',
       isHomePage: 'isHomePage',
-      blockCount: 'layoutBlocks.length'
+      blocks: 'layoutBlocks'
     },
-    prepare({ title, isHomePage, blockCount }: any) {
+    prepare({ title, isHomePage, blocks }: any) {
       return {
         title: title,
-        subtitle: `${isHomePage ? 'Home Page' : 'Page'} • ${blockCount || 0} sections`
+        subtitle: `${isHomePage ? 'Home Page' : 'Page'} • ${blocks?.length || 0} sections`
       };
     }
   }

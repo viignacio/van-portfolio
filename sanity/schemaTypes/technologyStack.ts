@@ -160,7 +160,7 @@ export default defineType({
       const techCount = subtitle?.length || 0;
       return {
         title: title,
-        subtitle: `${techCount} technology${techCount !== 1 ? 's' : ''}`,
+        subtitle: `${techCount} ${techCount === 1 ? 'technology' : 'technologies'}`,
       };
     },
   },

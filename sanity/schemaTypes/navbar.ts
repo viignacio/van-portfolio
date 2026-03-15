@@ -71,12 +71,12 @@ export default {
   preview: {
     select: {
       title: 'title',
-      linkCount: 'links.length'
+      links: 'links'
     },
-    prepare({ title, linkCount }: any) {
+    prepare({ title, links }: any) {
       return {
         title: title || 'Untitled Navbar',
-        subtitle: `${linkCount || 0} links`
+        subtitle: `${links?.length || 0} links`
       };
     }
   }
