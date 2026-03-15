@@ -18,7 +18,5 @@ export default {
     { name: 'demoUrl', title: 'Demo URL', type: 'url' },
     { name: 'demoCta', title: 'Demo Button Text', type: 'string', description: 'Text for the demo button (e.g. Live Demo, View Site, etc.)' },
     { name: 'repoUrl', title: 'Repository URL', type: 'url' },
-    { name: 'publishedAt', title: 'Published At', type: 'datetime' },
-    { name: 'updatedAt', title: 'Updated At', type: 'datetime' },
   ]
 }; 

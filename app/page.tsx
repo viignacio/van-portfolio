@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Layout from '@/components/Layout';
 import LayoutBlock from '@/components/LayoutBlock';
 import Hero from '@/components/Hero';
@@ -5,8 +6,17 @@ import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import HeroBackground from '@/components/HeroBackground';
-import { getHomePage } from '@/lib/sanity/queries';
+import { getHomePage, getHomePageSeo } from '@/lib/sanity/queries';
 import { urlFor } from '@/lib/sanity/image';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getHomePageSeo();
+  return {
+    title: seo?.metaTitle ?? 'Van Ian Ignacio | QA Portfolio',
+    description: seo?.metaDescription ?? 'Professional portfolio showcasing QA automation expertise and projects',
+    openGraph: seo?.ogImage ? { images: [{ url: seo.ogImage }] } : undefined,
+  };
+}
 
 export default async function Home() {
   const pageData = await getHomePage();
