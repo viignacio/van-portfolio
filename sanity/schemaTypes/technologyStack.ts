@@ -77,7 +77,7 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required().min(1).custom((technologies) => {
         if (!Array.isArray(technologies)) return true;
-        const names = technologies.map((t: { name?: string }) => t.name?.toLowerCase().trim()).filter(Boolean);
+        const names = (technologies as { name?: string }[]).map((t) => t.name?.toLowerCase().trim()).filter(Boolean);
         const duplicates = names.filter((name, i) => names.indexOf(name) !== i);
         if (duplicates.length > 0) {
           return `Duplicate technologies found: ${[...new Set(duplicates)].join(', ')}`;
