@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -28,11 +29,40 @@ interface LayoutProps {
 
 export default function Layout({ children, logoUrl, navbarData, footerData }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
+  const isManuallyExpandedRef = useRef(false);
+  const expandedAtRef = useRef(0);
+
+  const setManuallyExpanded = (val: boolean) => {
+    isManuallyExpandedRef.current = val;
+    setIsManuallyExpanded(val);
+  };
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrollY(y);
+      if (isManuallyExpandedRef.current && Math.abs(y - expandedAtRef.current) > 30) {
+        setManuallyExpanded(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isAtTop = scrollY < 150;
+  const showExpanded = isAtTop || isManuallyExpanded;
+
+  const handlePillClick = () => {
+    expandedAtRef.current = scrollY;
+    setManuallyExpanded(true);
+  };
 
   const scrollToSection = (targetId: string) => {
     const el = document.getElementById(targetId);
@@ -49,11 +79,26 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Desktop Navbar */}
+      {/* Desktop Navbar - Full */}
       {navbarData && (
-        <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 pointer-events-none">
-          <div className="w-4/5 mx-auto mt-6 pointer-events-auto">
-            <div className="bg-base/10 backdrop-blur-2xl border border-text-muted/30 rounded-2xl shadow-2xl">
+        <motion.nav
+          className="hidden lg:block fixed top-0 left-0 right-0 z-50 pointer-events-none"
+          initial={false}
+          animate={showExpanded ? 'expanded' : 'collapsed'}
+          variants={{
+            expanded: {
+              opacity: 1,
+              transition: { duration: 0.25, ease: 'easeOut' },
+            },
+            collapsed: {
+              opacity: 0,
+              transition: { duration: 0.2, ease: 'easeIn' },
+            },
+          }}
+          aria-hidden={!showExpanded}
+        >
+          <div style={{ pointerEvents: showExpanded ? 'auto' : 'none' }} className="w-4/5 mx-auto mt-6">
+            <div className="bg-gradient-to-b from-base-800 to-base-900 border border-accent/20 shadow-lg shadow-accent/15 rounded-2xl">
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (
@@ -96,14 +141,46 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
               </div>
             </div>
           </div>
-        </nav>
+        </motion.nav>
+      )}
+
+      {/* Desktop Floating Pill - Collapsed */}
+      {navbarData && (
+        <motion.button
+          onClick={handlePillClick}
+          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-gradient-to-b from-base-800 to-base-900 border border-accent/20 shadow-lg shadow-accent/15 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
+          initial={false}
+          animate={!showExpanded ? 'visible' : 'hidden'}
+          variants={{
+            visible: {
+              opacity: 1,
+              scale: 1,
+              transition: { type: 'spring', stiffness: 480, damping: 24, delay: 0.12 },
+            },
+            hidden: {
+              opacity: 0,
+              scale: 0.4,
+              transition: { duration: 0.15, ease: 'easeIn' },
+            },
+          }}
+          style={{ pointerEvents: !showExpanded ? 'auto' : 'none' }}
+          aria-label="Expand navigation"
+        >
+          {logoUrl ? (
+            <div className="relative h-9 w-9">
+              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority unoptimized />
+            </div>
+          ) : (
+            <Bars3Icon className="w-6 h-6" />
+          )}
+        </motion.button>
       )}
 
       {/* Mobile Hamburger */}
       {navbarData && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base/10 backdrop-blur-2xl border border-text-muted/30 shadow-2xl flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base/20"
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-gradient-to-b from-base-800 to-base-900 border border-accent/20 shadow-lg shadow-accent/15 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-800"
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
