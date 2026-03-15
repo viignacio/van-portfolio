@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { CalendarIcon, BuildingOfficeIcon, MinusIcon } from '@heroicons/react/24/outline';
 import { StarIcon, ChevronDoubleUpIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import { useMouseGlow } from '@/hooks/useMouseGlow';
+import { useMouseGlow, glowStyle } from '@/hooks/useMouseGlow';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import type { CareerEntry as CareerEntryType } from '@/lib/cms/types';
 
@@ -66,7 +66,7 @@ function CareerCard({ entry, index, isDesktop }: { entry: CareerEntryType; index
         {isHovering && (
           <div
             className="absolute inset-0 pointer-events-none hidden lg:block"
-            style={{ background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(14, 165, 233, 0.15), transparent 40%)` }}
+            style={glowStyle(mousePosition.x, mousePosition.y)}
           />
         )}
         {entry.isCurrent && (

@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import MediaRenderer from '@/components/MediaRenderer';
-import { useMouseGlow } from '@/hooks/useMouseGlow';
+import { useMouseGlow, glowStyle } from '@/hooks/useMouseGlow';
+import { useIsDesktop } from '@/hooks/useIsDesktop';
+import { useSwipe } from '@/hooks/useSwipe';
 import type { CertificationsSection as CertificationsSectionType, Certification } from '@/lib/cms/types';
 
 function formatDate(dateString?: string): string {
@@ -40,7 +42,7 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
         {isHovering && (
           <div
             className="absolute inset-0 pointer-events-none hidden lg:block"
-            style={{ background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(14, 165, 233, 0.15), transparent 40%)` }}
+            style={glowStyle(mousePosition.x, mousePosition.y)}
           />
         )}
 
@@ -126,19 +128,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
   if (!title && (!certifications || certifications.length === 0)) return null;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchStartY, setTouchStartY] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const minSwipeDistance = 50;
+  const isDesktop = useIsDesktop();
 
   const nextSlide = () => {
     if (certifications && certifications.length > 0) {
@@ -156,30 +146,7 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
     }
   };
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEndX(null);
-    setTouchStartX(e.targetTouches[0].clientX);
-    setTouchStartY(e.targetTouches[0].clientY);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-    if (touchStartX !== null && touchStartY !== null) {
-      const dx = Math.abs(touchStartX - e.targetTouches[0].clientX);
-      const dy = Math.abs(touchStartY - e.targetTouches[0].clientY);
-      if (dx > dy && dx > 10) e.preventDefault();
-    }
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return;
-    const distance = touchStartX - touchEndX;
-    if (distance > minSwipeDistance) nextSlide();
-    if (distance < -minSwipeDistance) prevSlide();
-    setTouchStartX(null);
-    setTouchStartY(null);
-    setTouchEndX(null);
-  };
+  const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe(nextSlide, prevSlide);
 
   return (
     <section id={id} className="py-20">
