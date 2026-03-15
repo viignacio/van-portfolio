@@ -12,6 +12,8 @@ import { useMouseGlow } from '@/hooks/useMouseGlow';
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import type { ProjectsSection as ProjectsSectionType, Project } from '@/lib/cms/types';
 
+const swiftEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const slideVariants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 40 : -40,
@@ -20,12 +22,12 @@ const slideVariants = {
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.35, ease: swiftEase },
   },
   exit: (direction: number) => ({
     x: direction > 0 ? -40 : 40,
     opacity: 0,
-    transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.25, ease: swiftEase },
   }),
 };
 
