@@ -20,12 +20,6 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     {
-      name: 'isHomePage',
-      title: 'Is Home Page',
-      type: 'boolean',
-      initialValue: false
-    },
-    {
       name: 'navbar',
       title: 'Navigation Bar',
       type: 'reference',
@@ -75,13 +69,13 @@ export default {
   preview: {
     select: {
       title: 'title',
-      isHomePage: 'isHomePage',
+      slug: 'slug.current',
       blocks: 'layoutBlocks'
     },
-    prepare({ title, isHomePage, blocks }: any) {
+    prepare({ title, slug, blocks }: any) {
       return {
         title: title,
-        subtitle: `${isHomePage ? 'Home Page' : 'Page'} • ${blocks?.length || 0} sections`
+        subtitle: `/${slug} • ${blocks?.length || 0} sections`
       };
     }
   }

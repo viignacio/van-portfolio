@@ -8,10 +8,10 @@ import { motion } from 'motion/react';
 
 interface HeroProps {
   data?: {
-    fullName?: string;
-    professionalTitle?: string;
-    tagline?: string;
-    profileImage?: {
+    headline?: string;
+    subheading?: string;
+    bodyText?: string;
+    image?: {
       asset?: { _ref?: string };
       hotspot?: unknown;
       crop?: unknown;
@@ -24,16 +24,16 @@ interface HeroProps {
 export default function Hero({ data }: HeroProps) {
   if (!data) return null;
 
-  const { fullName, professionalTitle, tagline, profileImage, cta1, cta2 } = data;
+  const { headline, subheading, bodyText, image, cta1, cta2 } = data;
 
   return (
     <div className="w-full text-left">
-      {profileImage?.asset?._ref && (
+      {image?.asset?._ref && (
         <div className="mb-8 flex justify-start">
           <div className="relative">
             <Image
-              src={urlFor(profileImage).width(256).height(256).fit('crop').auto('format').url()}
-              alt={fullName || 'Profile'}
+              src={urlFor(image).width(256).height(256).fit('crop').auto('format').url()}
+              alt={headline || 'Profile'}
               width={128}
               height={128}
               className="w-32 h-32 rounded-full object-cover border-4 border-text-muted shadow-2xl"
@@ -45,32 +45,36 @@ export default function Hero({ data }: HeroProps) {
       )}
 
       <div className="px-0 py-6 lg:p-8 lg:-mt-32">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-8xl font-bold text-text-primary mb-4 drop-shadow-4xl"
-        >
-          {fullName || 'Your Name'}
-        </motion.h1>
+        {headline && (
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-8xl font-bold text-text-primary mb-4 drop-shadow-4xl"
+          >
+            {headline}
+          </motion.h1>
+        )}
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-4xl font-semibold text-accent mb-6 drop-shadow-4xl"
-        >
-          {professionalTitle || 'Professional Title'}
-        </motion.h2>
+        {subheading && (
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl md:text-4xl font-semibold text-accent mb-6 drop-shadow-4xl"
+          >
+            {subheading}
+          </motion.h2>
+        )}
 
-        {tagline && (
+        {bodyText && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-text-secondary mb-8 max-w-3xl leading-relaxed drop-shadow-4xl"
           >
-            {tagline}
+            {bodyText}
           </motion.p>
         )}
 

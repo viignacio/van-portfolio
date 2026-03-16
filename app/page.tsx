@@ -6,11 +6,11 @@ import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import HeroBackground from '@/components/HeroBackground';
-import { getHomePage } from '@/lib/sanity/queries';
+import { getPageBySlug } from '@/lib/sanity/queries';
 import { urlFor } from '@/lib/sanity/image';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await getHomePage();
+  const pageData = await getPageBySlug('home');
   const seo = pageData?.seo;
   return {
     title: seo?.metaTitle ?? 'Van Ian Ignacio | QA Portfolio',
@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const pageData = await getHomePage();
+  const pageData = await getPageBySlug('home');
 
   if (!pageData) {
     return (

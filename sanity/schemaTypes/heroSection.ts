@@ -4,27 +4,23 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'fullName',
-      title: 'Full Name',
-      description: 'The person\'s full name (e.g., "Van Ian Ignacio")',
+      name: 'headline',
+      title: 'Headline',
       type: 'string'
     },
     {
-      name: 'professionalTitle',
-      title: 'Professional Title',
-      description: 'Job title or role (e.g., "QA Consultant", "Software Engineer")',
+      name: 'subheading',
+      title: 'Subheading',
       type: 'string'
     },
     {
-      name: 'tagline',
-      title: 'Tagline',
-      description: 'Optional catchy phrase or description',
+      name: 'bodyText',
+      title: 'Body Text',
       type: 'string'
     },
     {
       name: 'cta1',
-      title: 'CTA 1 - Download Resume',
-      description: 'Optional download resume button',
+      title: 'CTA 1',
       type: 'object',
       fields: [
         {
@@ -35,8 +31,7 @@ export default {
         },
         {
           name: 'url',
-          title: 'Resume URL',
-          description: 'External link to resume (Google Drive, etc.)',
+          title: 'URL',
           type: 'url'
         },
         {
@@ -62,8 +57,7 @@ export default {
     },
     {
       name: 'cta2',
-      title: 'CTA 2 - Contact',
-      description: 'Optional contact button that opens default email app',
+      title: 'CTA 2',
       type: 'object',
       fields: [
         {
@@ -94,9 +88,8 @@ export default {
       }
     },
     {
-      name: 'profileImage',
-      title: 'Profile Image',
-      description: 'Optional profile picture',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true
@@ -156,13 +149,13 @@ export default {
   ],
   preview: {
     select: {
-      fullName: 'fullName',
-      professionalTitle: 'professionalTitle'
+      headline: 'headline',
+      subheading: 'subheading'
     },
-    prepare({ fullName, professionalTitle }: any) {
+    prepare({ headline, subheading }: any) {
       return {
-        title: fullName || 'No name',
-        subtitle: professionalTitle || 'No title'
+        title: headline || 'No headline',
+        subtitle: subheading || 'No subheading'
       };
     }
   }

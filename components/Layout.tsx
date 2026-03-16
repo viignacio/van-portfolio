@@ -100,7 +100,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
           aria-hidden={!showExpanded}
         >
           <div style={{ pointerEvents: showExpanded ? 'auto' : 'none' }} className="w-4/5 mx-auto mt-6">
-            <div className="bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 rounded-2xl">
+            <div className="bg-base-950 shadow-lg shadow-black/40 rounded-2xl">
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (
@@ -150,7 +150,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && (
         <motion.button
           onClick={handlePillClick}
-          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
+          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-950 shadow-lg shadow-black/40 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
           initial={false}
           animate={!showExpanded ? 'visible' : 'hidden'}
           variants={{
@@ -182,7 +182,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-950 shadow-lg shadow-black/40 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
