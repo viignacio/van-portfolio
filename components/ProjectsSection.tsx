@@ -101,7 +101,9 @@ function ProjectCard({
             <MediaRenderer
               media={{ mediaType: 'image', image: project.image }}
               alt={project.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 800px"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full bg-linear-to-br from-accent/20 to-base-700 flex items-center justify-center">

@@ -46,3 +46,7 @@ STYLE_GUIDE.md
 
 # claude
 .claude
+
+# local files
+*.local
+*.*.local

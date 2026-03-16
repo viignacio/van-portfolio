@@ -1,15 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
   experimental: {
     staleTimes: {
       dynamic: 0,
-      static: 0,
+      static: 30,
     },
   },
   transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity', 'sanity-plugin-media'],
   images: {
-    unoptimized: true,
     remotePatterns: [
       { protocol: 'http', hostname: 'localhost' },
       { protocol: 'https', hostname: 'cdn.sanity.io' },

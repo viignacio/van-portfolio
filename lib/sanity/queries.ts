@@ -1,22 +1,14 @@
+import { cache } from 'react';
 import { sanityClient } from './client';
 
-export async function getHomePageSeo() {
-  const query = `*[_type == "page" && isHomePage == true][0]{
-    "metaTitle": seo.metaTitle,
-    "metaDescription": seo.metaDescription,
-    "ogImage": seo.ogImage.asset->url
-  }`;
-
-  try {
-    return await sanityClient.fetch(query, {}, { next: { revalidate: 3600, tags: ['homepage'] } });
-  } catch {
-    return null;
-  }
-}
-
-export async function getHomePage() {
+export const getHomePage = cache(async function getHomePage() {
   const query = `*[_type == "page" && isHomePage == true][0]{
     ...,
+    "seo": {
+      "metaTitle": seo.metaTitle,
+      "metaDescription": seo.metaDescription,
+      "ogImage": seo.ogImage.asset->url
+    },
     navbar->{
       title,
       logo{ asset, hotspot, crop },
@@ -105,4 +97,4 @@ export async function getHomePage() {
     console.error('Error fetching homepage data:', error instanceof Error ? error.message : error);
     return null;
   }
-}
+});
