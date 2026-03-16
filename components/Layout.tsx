@@ -104,9 +104,9 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (
-                    <div className="relative h-12 w-12 overflow-hidden">
+                    <Link href="/" className="relative block h-12 w-12 overflow-hidden">
                       <Image src={logoUrl} alt="Logo" fill className="object-contain" priority />
-                    </div>
+                    </Link>
                   )}
                 </div>
                 {filteredNavLinks.length > 0 && (
