@@ -137,4 +137,76 @@ describe('AboutSection', () => {
     render(<AboutSection data={{ careerTimeline: [] }} />);
     expect(screen.queryByText('Career History')).toBeNull();
   });
+
+  it('defaults title to "About Me" when title is not provided', () => {
+    render(<AboutSection data={{}} />);
+    expect(screen.getByText('About Me')).toBeInTheDocument();
+  });
+
+  it('renders proficiency indicator for expert technologies', () => {
+    const { container } = render(<AboutSection data={{ technologyStack: {
+      _id: 'ts', title: 'Stack',
+      technologies: [{ _key: 'k1', name: 'TypeScript', category: 'frontend', proficiency: 'expert' }],
+    }}} />);
+    expect(container.querySelector('.text-yellow-400')).toBeInTheDocument();
+  });
+
+  it('renders proficiency indicator for advanced technologies', () => {
+    const { container } = render(<AboutSection data={{ technologyStack: {
+      _id: 'ts', title: 'Stack',
+      technologies: [{ _key: 'k1', name: 'Python', category: 'backend', proficiency: 'advanced' }],
+    }}} />);
+    expect(container.querySelector('.text-red-500')).toBeInTheDocument();
+  });
+
+  it('renders proficiency indicator for intermediate technologies', () => {
+    const { container } = render(<AboutSection data={{ technologyStack: {
+      _id: 'ts', title: 'Stack',
+      technologies: [{ _key: 'k1', name: 'Java', category: 'backend', proficiency: 'intermediate' }],
+    }}} />);
+    expect(container.querySelector('.text-orange-400')).toBeInTheDocument();
+  });
+
+  it('renders proficiency indicator for beginner technologies', () => {
+    const { container } = render(<AboutSection data={{ technologyStack: {
+      _id: 'ts', title: 'Stack',
+      technologies: [{ _key: 'k1', name: 'Rust', category: 'other', proficiency: 'beginner' }],
+    }}} />);
+    expect(container.querySelector('.text-yellow-300')).toBeInTheDocument();
+  });
+
+  it('groups technology with no category under "Other"', () => {
+    render(<AboutSection data={{ technologyStack: {
+      _id: 'ts', title: 'Stack',
+      technologies: [{ _key: 'k1', name: 'SomeTool' }],
+    }}} />);
+    expect(screen.getByText('Other')).toBeInTheDocument();
+    expect(screen.getByText('SomeTool')).toBeInTheDocument();
+  });
+
+  it('renders duration as "< 1 year" for entries under a year', () => {
+    const shortTimeline = [{
+      _id: 'entry-short',
+      position: 'Junior Dev',
+      company: 'Startup',
+      startDate: { month: '1', year: 2023 },
+      endDate: { month: '6', year: 2023 },
+      isCurrent: false,
+    }];
+    render(<AboutSection data={{ careerTimeline: shortTimeline }} />);
+    expect(screen.getByText('< 1 year')).toBeInTheDocument();
+  });
+
+  it('renders duration as "1 year" for entries spanning one year', () => {
+    const oneYearTimeline = [{
+      _id: 'entry-1yr',
+      position: 'Dev',
+      company: 'Company',
+      startDate: { month: '1', year: 2022 },
+      endDate: { month: '1', year: 2023 },
+      isCurrent: false,
+    }];
+    render(<AboutSection data={{ careerTimeline: oneYearTimeline }} />);
+    expect(screen.getByText('1 year')).toBeInTheDocument();
+  });
 });

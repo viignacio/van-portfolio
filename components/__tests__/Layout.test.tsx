@@ -139,4 +139,43 @@ describe('Layout', () => {
     render(<Layout><div>Content</div></Layout>);
     expect(screen.queryByRole('contentinfo')).toBeNull();
   });
+
+  it('locks body scroll when mobile menu is opened', async () => {
+    const user = userEvent.setup();
+    render(<Layout navbarData={navbarData}><div /></Layout>);
+    await user.click(screen.getByRole('button', { name: /open mobile menu/i }));
+    expect(document.body.style.overflow).toBe('hidden');
+  });
+
+  it('restores body scroll when mobile menu is closed', async () => {
+    const user = userEvent.setup();
+    render(<Layout navbarData={navbarData}><div /></Layout>);
+    await user.click(screen.getByRole('button', { name: /open mobile menu/i }));
+    await user.click(screen.getByRole('button', { name: /close mobile menu/i }));
+    expect(document.body.style.overflow).toBe('');
+  });
+
+  it('footer email is a mailto link', () => {
+    render(<Layout footerData={footerData}><div /></Layout>);
+    const emailLink = screen.getByRole('link', { name: 'hello@test.com' });
+    expect(emailLink).toHaveAttribute('href', 'mailto:hello@test.com');
+  });
+
+  it('footer phone is a tel link', () => {
+    render(<Layout footerData={footerData}><div /></Layout>);
+    const phoneLink = screen.getByRole('link', { name: '+1 234 567 890' });
+    expect(phoneLink).toHaveAttribute('href', 'tel:+1 234 567 890');
+  });
+
+  it('social media links open in a new tab with noopener noreferrer', () => {
+    render(<Layout footerData={footerData}><div /></Layout>);
+    const linkedinLink = screen.getByRole('link', { name: /linkedin/i });
+    expect(linkedinLink).toHaveAttribute('target', '_blank');
+    expect(linkedinLink).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('renders the expand navigation pill button when navbarData is provided', () => {
+    render(<Layout navbarData={navbarData}><div /></Layout>);
+    expect(screen.getByRole('button', { name: /expand navigation/i })).toBeInTheDocument();
+  });
 });
