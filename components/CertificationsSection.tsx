@@ -52,8 +52,10 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
               <MediaRenderer
                 media={{ mediaType: 'image', image: certification.image }}
                 alt={certification.title}
-                className="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 1024px) 100vw, 700px"
                 quality={80}
+                className="object-cover lg:group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300" />
             </div>

@@ -1,7 +1,12 @@
 'use client';
 
-import FaultyTerminal from '@/components/Backgrounds/FaultyTerminal';
+import dynamic from 'next/dynamic';
 import MediaRenderer from '@/components/MediaRenderer';
+
+const FaultyTerminal = dynamic(
+  () => import('@/components/Backgrounds/FaultyTerminal'),
+  { ssr: false }
+);
 
 const overlayClass: Record<'dark' | 'darker', string> = {
   dark: 'absolute inset-0 bg-black/50 z-[1]',

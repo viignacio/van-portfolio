@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import { urlFor } from '@/lib/sanity/image';
 import { motion } from 'motion/react';
@@ -30,10 +31,13 @@ export default function Hero({ data }: HeroProps) {
       {profileImage?.asset?._ref && (
         <div className="mb-8 flex justify-start">
           <div className="relative">
-            <img
+            <Image
               src={urlFor(profileImage).width(256).height(256).fit('crop').auto('format').url()}
               alt={fullName || 'Profile'}
+              width={128}
+              height={128}
               className="w-32 h-32 rounded-full object-cover border-4 border-text-muted shadow-2xl"
+              priority
             />
             <div className="absolute inset-0 rounded-full bg-accent/20 blur-xl scale-110" />
           </div>

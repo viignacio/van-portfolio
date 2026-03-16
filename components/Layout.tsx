@@ -105,7 +105,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
                 <div className="shrink-0">
                   {logoUrl && (
                     <div className="relative h-12 w-12 overflow-hidden">
-                      <Image src={logoUrl} alt="Logo" fill className="object-contain" priority unoptimized />
+                      <Image src={logoUrl} alt="Logo" fill className="object-contain" priority />
                     </div>
                   )}
                 </div>
@@ -170,7 +170,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
         >
           {logoUrl ? (
             <div className="relative h-9 w-9">
-              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority unoptimized />
+              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority />
             </div>
           ) : (
             <Bars3Icon className="w-6 h-6" />
@@ -188,7 +188,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
         >
           {logoUrl ? (
             <div className="relative h-8 w-8">
-              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority unoptimized />
+              <Image src={logoUrl} alt="Logo" fill className="object-contain" priority />
             </div>
           ) : (
             <Bars3Icon className="w-6 h-6" />
