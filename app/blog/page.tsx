@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Layout from '@/components/Layout';
 import LayoutBlock from '@/components/LayoutBlock';
 import Hero from '@/components/Hero';
@@ -10,24 +11,20 @@ import { getPageBySlug } from '@/lib/sanity/queries';
 import { urlFor } from '@/lib/sanity/image';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await getPageBySlug('home');
+  const pageData = await getPageBySlug('blog');
   const seo = pageData?.seo;
   return {
-    title: seo?.metaTitle ?? 'Van Ian Ignacio | QA Portfolio',
-    description: seo?.metaDescription ?? 'Professional portfolio showcasing QA automation expertise and projects',
+    title: seo?.metaTitle ?? 'Blog | Van Ian Ignacio',
+    description: seo?.metaDescription ?? 'Articles and insights on QA automation and software testing',
     openGraph: seo?.ogImage ? { images: [{ url: seo.ogImage }] } : undefined,
   };
 }
 
-export default async function Home() {
-  const pageData = await getPageBySlug('home');
+export default async function BlogPage() {
+  const pageData = await getPageBySlug('blog');
 
   if (!pageData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-text-primary">
-        No data found
-      </div>
-    );
+    notFound();
   }
 
   const logoUrl = pageData?.navbar?.logo?.asset?._ref

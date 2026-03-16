@@ -100,13 +100,13 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
           aria-hidden={!showExpanded}
         >
           <div style={{ pointerEvents: showExpanded ? 'auto' : 'none' }} className="w-4/5 mx-auto mt-6">
-            <div className="bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 rounded-2xl">
+            <div className="bg-base-950 shadow-lg shadow-black/40 rounded-2xl">
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (
-                    <div className="relative h-12 w-12 overflow-hidden">
+                    <Link href="/" className="relative block h-12 w-12 overflow-hidden">
                       <Image src={logoUrl} alt="Logo" fill className="object-contain" priority />
-                    </div>
+                    </Link>
                   )}
                 </div>
                 {filteredNavLinks.length > 0 && (
@@ -123,18 +123,26 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
                             {link.label}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
                           </Link>
-                        ) : (
+                        ) : link.href.includes('#') ? (
                           <a
                             href={link.href}
                             className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs cursor-pointer"
                             onClick={(e) => {
                               e.preventDefault();
-                              scrollToSection(link.href.replace('#', ''));
+                              scrollToSection(link.href.replace(/.*#/, ''));
                             }}
                           >
                             {link.label}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
                           </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs"
+                          >
+                            {link.label}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
+                          </Link>
                         )}
                       </li>
                     ))}
@@ -150,7 +158,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && (
         <motion.button
           onClick={handlePillClick}
-          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
+          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-950 shadow-lg shadow-black/40 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
           initial={false}
           animate={!showExpanded ? 'visible' : 'hidden'}
           variants={{
@@ -182,7 +190,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-950 border border-accent/20 shadow-lg shadow-accent/15 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-950 shadow-lg shadow-black/40 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -232,18 +240,26 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
                         >
                           {link.label}
                         </Link>
-                      ) : (
+                      ) : link.href.includes('#') ? (
                         <a
                           href={link.href}
                           onClick={(e) => {
                             e.preventDefault();
                             setIsMobileMenuOpen(false);
-                            scrollToSection(link.href.replace('#', ''));
+                            scrollToSection(link.href.replace(/.*#/, ''));
                           }}
                           className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
                         >
                           {link.label}
                         </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2"
+                        >
+                          {link.label}
+                        </Link>
                       )}
                     </li>
                   ))}
