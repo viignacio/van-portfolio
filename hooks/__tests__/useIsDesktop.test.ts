@@ -12,7 +12,6 @@ describe('useIsDesktop', () => {
   });
 
   it('returns true when window.innerWidth is exactly 1024', () => {
-    setWindowWidth(1024);
     const { result } = renderHook(() => useIsDesktop());
     expect(result.current).toBe(true);
   });

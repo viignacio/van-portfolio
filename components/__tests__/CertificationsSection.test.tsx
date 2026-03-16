@@ -154,9 +154,8 @@ describe('CertificationsSection', () => {
     render(<CertificationsSection data={{ title: 'Certs', certifications }} />);
     const dots = screen.getAllByRole('button', { name: /go to certification/i });
     await user.click(dots[1]);
-    // Re-query after click to get the updated DOM
-    const updatedDots = screen.getAllByRole('button', { name: /go to certification/i });
-    expect(updatedDots[1]).toHaveClass('bg-accent');
+    // Re-query after click — React recreates dot nodes on re-render
+    expect(screen.getAllByRole('button', { name: /go to certification/i })[1]).toHaveClass('bg-accent');
   });
 
   it('does not render dots when only one certification', () => {

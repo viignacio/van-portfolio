@@ -47,8 +47,6 @@ describe('MediaRenderer', () => {
         className="video-class"
       />
     );
-    const video = screen.getByRole('generic', { hidden: true });
-    // The rendered element is a <video>
     expect(document.querySelector('video')).toBeInTheDocument();
   });
 

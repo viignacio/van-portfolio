@@ -143,36 +143,17 @@ describe('AboutSection', () => {
     expect(screen.getByText('About Me')).toBeInTheDocument();
   });
 
-  it('renders proficiency indicator for expert technologies', () => {
+  it.each([
+    ['expert',       'frontend', '.text-yellow-400'],
+    ['advanced',     'backend',  '.text-red-500'],
+    ['intermediate', 'backend',  '.text-orange-400'],
+    ['beginner',     'other',    '.text-yellow-300'],
+  ])('renders proficiency indicator for %s technologies', (proficiency, category, selector) => {
     const { container } = render(<AboutSection data={{ technologyStack: {
       _id: 'ts', title: 'Stack',
-      technologies: [{ _key: 'k1', name: 'TypeScript', category: 'frontend', proficiency: 'expert' }],
+      technologies: [{ _key: 'k1', name: 'Tech', category, proficiency }],
     }}} />);
-    expect(container.querySelector('.text-yellow-400')).toBeInTheDocument();
-  });
-
-  it('renders proficiency indicator for advanced technologies', () => {
-    const { container } = render(<AboutSection data={{ technologyStack: {
-      _id: 'ts', title: 'Stack',
-      technologies: [{ _key: 'k1', name: 'Python', category: 'backend', proficiency: 'advanced' }],
-    }}} />);
-    expect(container.querySelector('.text-red-500')).toBeInTheDocument();
-  });
-
-  it('renders proficiency indicator for intermediate technologies', () => {
-    const { container } = render(<AboutSection data={{ technologyStack: {
-      _id: 'ts', title: 'Stack',
-      technologies: [{ _key: 'k1', name: 'Java', category: 'backend', proficiency: 'intermediate' }],
-    }}} />);
-    expect(container.querySelector('.text-orange-400')).toBeInTheDocument();
-  });
-
-  it('renders proficiency indicator for beginner technologies', () => {
-    const { container } = render(<AboutSection data={{ technologyStack: {
-      _id: 'ts', title: 'Stack',
-      technologies: [{ _key: 'k1', name: 'Rust', category: 'other', proficiency: 'beginner' }],
-    }}} />);
-    expect(container.querySelector('.text-yellow-300')).toBeInTheDocument();
+    expect(container.querySelector(selector)).toBeInTheDocument();
   });
 
   it('groups technology with no category under "Other"', () => {
