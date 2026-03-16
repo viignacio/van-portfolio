@@ -123,18 +123,26 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
                             {link.label}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
                           </Link>
-                        ) : (
+                        ) : link.href.includes('#') ? (
                           <a
                             href={link.href}
                             className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs cursor-pointer"
                             onClick={(e) => {
                               e.preventDefault();
-                              scrollToSection(link.href.replace('#', ''));
+                              scrollToSection(link.href.replace(/.*#/, ''));
                             }}
                           >
                             {link.label}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
                           </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-text-primary lg:hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-xs"
+                          >
+                            {link.label}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 lg:group-hover:w-full" />
+                          </Link>
                         )}
                       </li>
                     ))}
@@ -232,18 +240,26 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
                         >
                           {link.label}
                         </Link>
-                      ) : (
+                      ) : link.href.includes('#') ? (
                         <a
                           href={link.href}
                           onClick={(e) => {
                             e.preventDefault();
                             setIsMobileMenuOpen(false);
-                            scrollToSection(link.href.replace('#', ''));
+                            scrollToSection(link.href.replace(/.*#/, ''));
                           }}
                           className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
                         >
                           {link.label}
                         </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2"
+                        >
+                          {link.label}
+                        </Link>
                       )}
                     </li>
                   ))}
