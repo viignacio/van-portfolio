@@ -1,6 +1,7 @@
 import { AboutSection } from './aboutSection';
 import { ProjectsSection } from './projectsSection';
 import { CertificationsSection } from './certificationsSection';
+import { ContentSection } from './contentSection';
 
 export interface HeroSection {
   fullName: string;
@@ -21,12 +22,13 @@ export interface HeroSection {
 
 export interface LayoutBlock {
   _id: string;
-  blockType: 'hero' | 'about' | 'skills' | 'projects' | 'certifications' | 'commendations' | 'contact';
+  blockType: 'hero' | 'about' | 'skills' | 'projects' | 'certifications' | 'commendations' | 'contact' | 'content';
   isActive: boolean;
   heroSection?: HeroSection;
   aboutSection?: AboutSection;
   projectsSection?: ProjectsSection;
   certificationsSection?: CertificationsSection;
+  contentSection?: ContentSection;
 }
 
 export interface Page {

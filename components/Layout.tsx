@@ -100,7 +100,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
           aria-hidden={!showExpanded}
         >
           <div style={{ pointerEvents: showExpanded ? 'auto' : 'none' }} className="w-4/5 mx-auto mt-6">
-            <div className="bg-base-950 shadow-lg shadow-black/40 rounded-2xl">
+            <div className="bg-base-800/99 shadow-[0_0_100px_rgba(0,0,0,0.8)] rounded-2xl border border-ui-border/20">
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (
@@ -158,7 +158,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && (
         <motion.button
           onClick={handlePillClick}
-          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-950 shadow-lg shadow-black/40 text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
+          className="hidden lg:flex fixed top-8 right-[10%] z-50 h-16 w-16 rounded-full items-center justify-center bg-base-800/99 shadow-[0_0_50px_rgba(0,0,0,0.8)] text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
           initial={false}
           animate={!showExpanded ? 'visible' : 'hidden'}
           variants={{
@@ -190,7 +190,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
       {navbarData && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-950 shadow-lg shadow-black/40 flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base-800/99 shadow-[0_0_40px_rgba(0,0,0,0.8)] flex items-center justify-center text-text-primary focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base active:bg-base-700"
           aria-label="Open mobile menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -216,7 +216,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
             className={`fixed inset-0 z-70 lg:hidden transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
             aria-hidden={!isMobileMenuOpen}
           >
-            <div className="h-full w-full bg-base flex flex-col">
+            <div className="h-full w-full bg-base-800/99 flex flex-col">
               <div className="flex items-center justify-end p-6">
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}

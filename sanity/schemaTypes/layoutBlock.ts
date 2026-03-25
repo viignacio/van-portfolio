@@ -15,7 +15,8 @@ export default {
           { title: 'Projects Section', value: 'projects' },
           { title: 'Certifications Section', value: 'certifications' },
           { title: 'Commendations Section', value: 'commendations' },
-          { title: 'Contact Section', value: 'contact' }
+          { title: 'Contact Section', value: 'contact' },
+          { title: 'Content Section', value: 'content' }
         ]
       }
     },
@@ -66,6 +67,12 @@ export default {
       title: 'Contact Section Content',
       type: 'contactSection',
       hidden: ({ parent }: any) => parent?.blockType !== 'contact'
+    },
+    {
+      name: 'contentSection',
+      title: 'Content Section Content',
+      type: 'contentSection',
+      hidden: ({ parent }: any) => parent?.blockType !== 'content'
     }
   ],
   preview: {

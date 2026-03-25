@@ -32,6 +32,28 @@ export default {
       to: [{ type: 'footer' }]
     },
     {
+      name: 'archiveHeader',
+      title: 'Archive Header',
+      type: 'object',
+      fields: [
+        { name: 'title', title: 'Title', type: 'string' },
+        { name: 'highlightedTitle', title: 'Highlighted Title', type: 'string' },
+        { name: 'description', title: 'Description', type: 'text', rows: 3 }
+      ]
+    },
+    {
+      name: 'archiveFooter',
+      title: 'Archive Footer Text',
+      type: 'string',
+      description: 'Text shown at the bottom of the archive (e.g., "DESIGNED & BUILT WITH PASSION")'
+    },
+    {
+      name: 'emptyStateText',
+      title: 'Empty State Text',
+      type: 'string',
+      description: 'Text shown when no projects are found'
+    },
+    {
       name: 'layoutBlocks',
       title: 'Layout Blocks',
       type: 'array',

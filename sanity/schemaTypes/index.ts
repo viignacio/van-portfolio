@@ -18,7 +18,13 @@ import careerEntry from './careerEntry';
 import technologyStack from './technologyStack';
 import media from './media';
 
+import blockContent from './blockContent';
+
+import contentSection from './contentSection';
+
 export const schemaTypes = [
+  contentSection,
+  blockContent,
   media,
   project,
   commendation,

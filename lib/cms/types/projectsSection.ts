@@ -1,3 +1,5 @@
+import type { LayoutBlock } from './layoutBlock';
+
 export interface ProjectsSection {
   headline: string;
   projects: Project[];
@@ -6,8 +8,10 @@ export interface ProjectsSection {
 
 export interface Project {
   _id: string;
+  _ref?: string;
   _type: 'project';
   title: string;
+  role: string;
   slug: { current: string };
   description: string;
   image?: { asset?: { _ref?: string }; hotspot?: unknown; crop?: unknown };
@@ -18,4 +22,5 @@ export interface Project {
   repoUrl?: string;
   publishedAt?: string;
   updatedAt?: string;
+  layoutBlocks?: LayoutBlock[];
 }

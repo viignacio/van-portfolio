@@ -43,9 +43,11 @@ next-env.d.ts
 
 # documentation
 STYLE_GUIDE.md
+docs
 
 # claude
 .claude
+.agent
 
 # local files
 *.local

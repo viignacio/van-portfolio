@@ -82,7 +82,7 @@ function ProjectCard({
 
   return (
     <div
-      className="relative bg-base-800 border border-base-700 rounded-2xl overflow-hidden"
+      className="relative bg-base-800 border border-base-700 rounded-2xl overflow-hidden isolation-isolate transform-gpu"
       onMouseMove={isDesktop ? handleMouseMove : undefined}
       onMouseEnter={isDesktop ? handleMouseEnter : undefined}
       onMouseLeave={isDesktop ? handleMouseLeave : undefined}

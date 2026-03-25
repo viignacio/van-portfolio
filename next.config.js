@@ -8,6 +8,7 @@ const nextConfig = {
   },
   transpilePackages: ['sanity', '@sanity/ui', '@sanity/vision', 'next-sanity', 'sanity-plugin-media'],
   images: {
+    qualities: [75, 80],
     remotePatterns: [
       { protocol: 'http', hostname: 'localhost' },
       { protocol: 'https', hostname: 'cdn.sanity.io' },

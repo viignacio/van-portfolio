@@ -34,7 +34,7 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
       className="w-full h-full"
     >
       <div
-        className="card group relative overflow-visible h-full flex flex-col"
+        className="card group relative overflow-hidden h-full flex flex-col isolation-isolate transform-gpu"
         onMouseMove={isDesktop ? handleMouseMove : undefined}
         onMouseEnter={isDesktop ? handleMouseEnter : undefined}
         onMouseLeave={isDesktop ? handleMouseLeave : undefined}

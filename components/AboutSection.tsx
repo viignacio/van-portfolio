@@ -63,12 +63,14 @@ function CareerCard({ entry, index, isDesktop }: { entry: CareerEntryType; index
         onMouseEnter={isDesktop ? handleMouseEnter : undefined}
         onMouseLeave={isDesktop ? handleMouseLeave : undefined}
       >
-        {isHovering && (
-          <div
-            className="absolute inset-0 pointer-events-none hidden lg:block"
-            style={glowStyle(mousePosition.x, mousePosition.y)}
-          />
-        )}
+        <div className="absolute inset-0 rounded-2xl overflow-hidden isolation-isolate pointer-events-none">
+          {isHovering && (
+            <div
+              className="absolute inset-0 z-0 hidden lg:block"
+              style={glowStyle(mousePosition.x, mousePosition.y)}
+            />
+          )}
+        </div>
         {entry.isCurrent && (
           <div className="absolute -top-2 -right-2 bg-accent text-accent-fg px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-10 whitespace-nowrap">
             Current
