@@ -12,7 +12,13 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 } },
-    { name: 'description', title: 'Description', type: 'text' },
+    { 
+      name: 'description', 
+      title: 'Description', 
+      type: 'text',
+      description: 'Main project description. Max 350 characters recommended to ensure most text is visible in the 3:4 archive cards.',
+      validation: (Rule: any) => Rule.max(350).warning('Longer descriptions will be clamped to fit the 3:4 card aspect ratio.')
+    },
     { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
     { 
       name: 'techStack', 

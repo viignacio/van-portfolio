@@ -23,7 +23,7 @@ export default function ProjectGridCard({ project, index }: ProjectGridCardProps
     >
       <Link href={`/project/${project.slug.current}`}>
         <div
-          className="group relative bg-base-900/50 backdrop-blur-sm border border-base-700 rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.1)]"
+          className="group relative bg-base-900/50 backdrop-blur-sm border border-base-700 rounded-2xl overflow-hidden aspect-[3/4] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.1)] flex flex-col"
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -35,9 +35,9 @@ export default function ProjectGridCard({ project, index }: ProjectGridCardProps
             />
           )}
 
-          <div className="relative z-10">
-            {/* Image Container - Uniform aspect ratio for all cards */}
-            <div className="relative overflow-hidden bg-base-800 aspect-square">
+          <div className="relative z-10 h-full flex flex-col">
+            {/* Image Container - 50% on mobile, 60% on desktop */}
+            <div className="relative overflow-hidden bg-base-800 h-1/2 lg:h-[60%] shrink-0">
               {project.image ? (
                 <MediaRenderer
                   media={{ mediaType: 'image', image: project.image }}
@@ -53,22 +53,24 @@ export default function ProjectGridCard({ project, index }: ProjectGridCardProps
               )}
             </div>
 
-            {/* Content Preview */}
-            <div className="p-6">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-accent px-2 py-0.5 bg-accent/10 rounded-full border border-accent/20">
-                  {project.role}
-                </span>
+            {/* Content Preview - 50% on mobile, 40% on desktop */}
+            <div className="p-5 lg:p-6 flex-1 flex flex-col gap-3 lg:gap-4 overflow-hidden">
+              <div className="flex flex-col gap-2 lg:gap-3 min-h-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-accent px-2 py-0.5 bg-accent/10 rounded-full border border-accent/20">
+                    {project.role}
+                  </span>
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold text-text-primary group-hover:text-accent transition-colors leading-tight min-h-0 shrink-0">
+                  {project.title}
+                </h3>
+                <p className="text-[14px] text-text-secondary leading-relaxed opacity-90 line-clamp-3 lg:line-clamp-5 overflow-hidden">
+                  {project.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-text-secondary line-clamp-2 mb-4 leading-relaxed">
-                {project.description}
-              </p>
 
               {project.techStack && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto pt-2 shrink-0">
                   {project.techStack.slice(0, 3).map((tech) => (
                     <span 
                       key={tech} 
@@ -79,7 +81,7 @@ export default function ProjectGridCard({ project, index }: ProjectGridCardProps
                   ))}
                   {project.techStack.length > 3 && (
                     <span className="text-[10px] text-text-muted self-center">
-                      +{project.techStack.length - 3} more
+                      +{project.techStack.length - 3}
                     </span>
                   )}
                 </div>

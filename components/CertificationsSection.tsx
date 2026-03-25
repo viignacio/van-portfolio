@@ -34,7 +34,7 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
       className="w-full h-full"
     >
       <div
-        className="card group relative overflow-hidden h-full flex flex-col isolation-isolate transform-gpu"
+        className="card group relative overflow-hidden min-h-[500px] flex flex-col isolation-isolate transform-gpu"
         onMouseMove={isDesktop ? handleMouseMove : undefined}
         onMouseEnter={isDesktop ? handleMouseEnter : undefined}
         onMouseLeave={isDesktop ? handleMouseLeave : undefined}
@@ -61,11 +61,11 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
             </div>
           )}
 
-          <h3 className="text-xl font-bold text-text-primary lg:group-hover:text-accent transition-colors">
+          <h3 className="text-xl font-bold text-text-primary lg:group-hover:text-accent transition-colors line-clamp-1">
             {certification.title}
           </h3>
 
-          <div className="text-text-secondary">
+          <div className="text-text-secondary line-clamp-1">
             <span className="font-medium">Issued by: </span>
             <span>{certification.issuer}</span>
           </div>
@@ -90,14 +90,14 @@ function CertificationCard({ certification, index, isDesktop }: { certification:
           {certification.credentialId && (
             <div className="text-sm text-text-muted">
               <span className="font-medium">Credential ID: </span>
-              <span className="truncate block" title={certification.credentialId} style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <span className="truncate block" title={certification.credentialId}>
                 {certification.credentialId}
               </span>
             </div>
           )}
 
           {certification.description && certification.description.trim() && (
-            <p className="text-text-secondary leading-relaxed">{certification.description}</p>
+            <p className="text-text-secondary leading-relaxed line-clamp-3 text-sm">{certification.description}</p>
           )}
 
           <div className="grow" />
@@ -174,23 +174,28 @@ export default function CertificationsSection({ data, id }: CertificationsSectio
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* Desktop: 3-column grid */}
-            <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6">
-              {certifications.map((cert, i) => {
-                const total = certifications.length;
-                const fullRows = Math.floor(total / 3);
-                const remainder = total % 3;
-                const isPartial = remainder > 0 && i >= fullRows * 3;
-                const posInRow = i - fullRows * 3;
-                let colClass = '';
-                if (isPartial && remainder === 1) colClass = 'lg:col-start-2';
-                else if (isPartial && remainder === 2) colClass = posInRow === 0 ? 'lg:col-start-1' : 'lg:col-start-2';
-                return (
-                  <div key={`grid-${cert._id}`} className={colClass}>
-                    <CertificationCard certification={cert} index={i} isDesktop={isDesktop} />
-                  </div>
-                );
-              })}
+            {/* Desktop: 3-column asymmetric layout */}
+            <div className="hidden lg:flex lg:flex-row gap-6 pb-32 px-4">
+              {/* Column 1 - Main anchor */}
+              <div className="flex-1 flex flex-col gap-6 lg:mt-0">
+                {certifications.filter((_, i) => i % 3 === 0).map((cert, i) => (
+                  <CertificationCard key={`col1-${cert._id}`} certification={cert} index={i * 3} isDesktop={isDesktop} />
+                ))}
+              </div>
+
+              {/* Column 2 - Offset down */}
+              <div className="flex-1 flex flex-col gap-6 lg:mt-24">
+                {certifications.filter((_, i) => i % 3 === 1).map((cert, i) => (
+                  <CertificationCard key={`col2-${cert._id}`} certification={cert} index={i * 3 + 1} isDesktop={isDesktop} />
+                ))}
+              </div>
+
+              {/* Column 3 - Main anchor */}
+              <div className="flex-1 flex flex-col gap-6 lg:mt-0">
+                {certifications.filter((_, i) => i % 3 === 2).map((cert, i) => (
+                  <CertificationCard key={`col3-${cert._id}`} certification={cert} index={i * 3 + 2} isDesktop={isDesktop} />
+                ))}
+              </div>
             </div>
 
             {/* Mobile: swipeable carousel */}
