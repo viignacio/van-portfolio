@@ -100,7 +100,7 @@ export default function Layout({ children, logoUrl, navbarData, footerData }: La
           aria-hidden={!showExpanded}
         >
           <div style={{ pointerEvents: showExpanded ? 'auto' : 'none' }} className="w-4/5 mx-auto mt-6">
-            <div className="bg-base-800/99 shadow-[0_0_100px_rgba(0,0,0,0.8)] rounded-2xl border border-ui-border/20">
+            <div className="bg-base-800/99 shadow-[0_0_100px_rgba(0,0,0,0.8)] rounded-2xl">
               <div className="flex items-center justify-between h-20 px-8">
                 <div className="shrink-0">
                   {logoUrl && (

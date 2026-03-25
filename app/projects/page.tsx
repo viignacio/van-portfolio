@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
       footerData={pageData?.footer}
       logoUrl={logoUrl}
     >
-      <main className="min-h-screen pt-32 pb-20 px-4 md:px-8">
+      <main className="min-h-screen pt-36 lg:pt-[168px] pb-20 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           {pageData.archiveHeader && (
             <header className="mb-20 text-center md:text-left">

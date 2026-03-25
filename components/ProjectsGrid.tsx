@@ -90,7 +90,7 @@ export default function ProjectsGrid({ initialProjects, footerText, emptyText }:
       </div>
 
       {/* Infinite Scroll Trigger */}
-      <div ref={observerTarget} className="h-20 flex items-center justify-center">
+      <div ref={observerTarget} className="pt-16 flex items-center justify-center">
         {loading && (
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent" />
         )}
