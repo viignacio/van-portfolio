@@ -15,6 +15,8 @@ const PAGE_FIELDS = `
   },
   footer->{
     title,
+    logo{ asset, hotspot, crop },
+    contentText,
     contactInfo,
     socialMedia,
     copyright

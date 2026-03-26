@@ -11,6 +11,23 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     {
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+        accept: 'image/png,image/svg+xml'
+      },
+      description: 'Optional logo displayed in the footer brand area (PNG or SVG)'
+    },
+    {
+      name: 'contentText',
+      title: 'Brand Content Text',
+      type: 'text',
+      rows: 4,
+      description: 'Short description or tagline shown below the logo in the footer'
+    },
+    {
       name: 'contactInfo',
       title: 'Contact Information',
       type: 'object',
