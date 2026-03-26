@@ -67,7 +67,7 @@ export default function ProjectsGrid({ initialProjects, footerText, emptyText }:
     <div className="w-full">
       <div className="flex flex-col md:flex-row gap-12">
         {/* Left Column - Offset from top */}
-        <div className="flex-1 flex flex-col gap-12 md:mt-24">
+        <div className="flex-1 flex flex-col gap-12 md:mt-24" data-testid="column-left">
           {leftColumn.map((project, index) => (
             <ProjectGridCard 
               key={project._id} 
@@ -78,7 +78,7 @@ export default function ProjectsGrid({ initialProjects, footerText, emptyText }:
         </div>
 
         {/* Right Column */}
-        <div className="flex-1 flex flex-col gap-12">
+        <div className="flex-1 flex flex-col gap-12" data-testid="column-right">
           {rightColumn.map((project, index) => (
             <ProjectGridCard 
               key={project._id} 

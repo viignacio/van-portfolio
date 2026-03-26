@@ -52,3 +52,6 @@ docs
 # local files
 *.local
 *.*.local
+
+# project resources
+projectLogos
