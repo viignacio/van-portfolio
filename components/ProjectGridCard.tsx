@@ -21,7 +21,7 @@ export default function ProjectGridCard({ project, index }: ProjectGridCardProps
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className=""
     >
-      <Link href={`/project/${project.slug.current}`}>
+      <Link href={`/project/${project.slug}`}>
         <div
           className="group relative bg-base-900/50 backdrop-blur-sm border border-base-700 rounded-2xl overflow-hidden aspect-[3/4] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.1)] flex flex-col"
           onMouseMove={handleMouseMove}

@@ -7,6 +7,7 @@ import LayoutBlock from '@/components/LayoutBlock';
 import { urlFor } from '@/lib/sanity/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import ProjectNavigation from '@/components/ProjectNavigation';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -14,7 +15,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const result = await getProjectBySlug(slug);
+  const project = result?.project;
   
   return {
     title: `${project?.title || 'Project'} | Van Ian Ignacio`,
@@ -25,7 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const result = await getProjectBySlug(slug);
+  const project = result?.project;
+  const nextProject = result?.nextProject;
   const homeData = await getPageBySlug('home');
 
   if (!project) {
@@ -84,6 +88,8 @@ export default async function ProjectPage({ params }: Props) {
              </div>
           </main>
         ) : null}
+        {/* Project Navigation */}
+        <ProjectNavigation nextProject={nextProject} />
       </div>
     </Layout>
   );

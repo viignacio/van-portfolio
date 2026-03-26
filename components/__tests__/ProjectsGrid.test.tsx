@@ -29,8 +29,8 @@ class MockIntersectionObserver {
 vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
 
 const mockProjects = [
-  { _id: '1', title: 'Project 1', slug: { current: 'p1' } },
-  { _id: '2', title: 'Project 2', slug: { current: 'p2' } },
+  { _id: '1', title: 'Project 1', slug: 'p1' },
+  { _id: '2', title: 'Project 2', slug: 'p2' },
 ] as any;
 
 describe('ProjectsGrid', () => {
@@ -59,10 +59,10 @@ describe('ProjectsGrid', () => {
 
   it('distributes projects into two columns correctly (L, R, R, L pattern)', () => {
     const fourProjects = [
-        { _id: '1', title: 'P1', slug: { current: 'p1' } },
-        { _id: '2', title: 'P2', slug: { current: 'p2' } },
-        { _id: '3', title: 'P3', slug: { current: 'p3' } },
-        { _id: '4', title: 'P4', slug: { current: 'p4' } },
+        { _id: '1', title: 'P1', slug: 'p1' },
+        { _id: '2', title: 'P2', slug: 'p2' },
+        { _id: '3', title: 'P3', slug: 'p3' },
+        { _id: '4', title: 'P4', slug: 'p4' },
     ] as any;
     const { container } = render(<ProjectsGrid initialProjects={fourProjects} />);
     
@@ -80,8 +80,8 @@ describe('ProjectsGrid', () => {
   });
 
   it('loads more projects when intersecting and hasMore is true', async () => {
-    const tenProjects = Array.from({ length: 10 }, (_, i) => ({ _id: `${i}`, title: `Project ${i}`, slug: { current: `p${i}` } })) as any;
-    const nextBatch = [{ _id: '10', title: 'Project 10', slug: { current: 'p10' } }] as any;
+    const tenProjects = Array.from({ length: 10 }, (_, i) => ({ _id: `${i}`, title: `Project ${i}`, slug: `p${i}` })) as any;
+    const nextBatch = [{ _id: '10', title: 'Project 10', slug: 'p10' }] as any;
     (getProjects as any).mockResolvedValue(nextBatch);
 
     render(<ProjectsGrid initialProjects={tenProjects} />);

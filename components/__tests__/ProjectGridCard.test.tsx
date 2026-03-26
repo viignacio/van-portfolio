@@ -30,7 +30,7 @@ vi.mock('@/hooks/useMouseGlow', () => ({
 
 const mockProject = {
   title: 'Test Project',
-  slug: { current: 'test-project' },
+  slug: 'test-project',
   description: 'A test project description.',
   role: 'Developer',
   techStack: ['React', 'TypeScript', 'Tailwind', 'Vitest'],

@@ -17,6 +17,12 @@ export default {
       initialValue: 'fullscreen',
     },
     {
+      name: 'topline',
+      title: 'Topline (Small Label)',
+      type: 'string',
+      description: 'Small text appearing above the main headline'
+    },
+    {
       name: 'headline',
       title: 'Headline',
       type: 'string'

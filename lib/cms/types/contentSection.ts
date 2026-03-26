@@ -3,14 +3,35 @@ export interface ContentSection {
 }
 
 export type ContentItem = 
-  | RichTextItem 
+  | ContentBlockItem 
+  | QuoteSectionItem
+  | TechSelectionSectionItem
   | MediaItem 
   | GalleryItem 
   | CTAItem;
 
-export interface RichTextItem {
-  _type: 'richText';
-  content: any; // Using any for standard block content for now
+export interface ContentBlockItem {
+  _type: 'contentBlock';
+  heading?: string;
+  body: any;
+}
+
+export interface QuoteSectionItem {
+  _type: 'quoteSection';
+  text: string;
+  author?: string;
+  role?: string;
+  variant?: 'centered' | 'left';
+}
+
+export interface TechSelectionSectionItem {
+  _type: 'techSelectionSection';
+  title?: string;
+  items: Array<{
+    tool: string;
+    reasoning: string;
+    icon?: string;
+  }>;
 }
 
 export interface MediaItem {

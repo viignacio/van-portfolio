@@ -12,7 +12,7 @@ export interface Project {
   _type: 'project';
   title: string;
   role: string;
-  slug: { current: string };
+  slug: string;
   description: string;
   image?: { asset?: { _ref?: string }; hotspot?: unknown; crop?: unknown };
   techStack?: string[];

@@ -55,16 +55,17 @@ describe('Sanity Queries', () => {
 
   describe('getProjectBySlug', () => {
     it('calls fetch with project slug', async () => {
-      (sanityClient.fetch as any).mockResolvedValue({ title: 'Test Project' });
+      const mockProject = { title: 'Test Project' };
+      (sanityClient.fetch as any).mockResolvedValue({ project: mockProject, nextProject: null });
       
       const result = await getProjectBySlug('test-slug');
       
       expect(sanityClient.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('*[_type == "project" && slug.current == $slug]'),
+        expect.stringContaining('slug.current == $slug'),
         { slug: 'test-slug' },
         expect.any(Object)
       );
-      expect(result).toEqual({ title: 'Test Project' });
+      expect(result).toEqual({ project: mockProject, nextProject: null });
     });
 
     it('returns null on error', async () => {

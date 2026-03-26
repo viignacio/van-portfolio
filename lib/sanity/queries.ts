@@ -41,7 +41,7 @@ const PAGE_FIELDS = `
         _id,
         _type,
         title,
-        slug,
+        "slug": slug.current,
         description,
         image{ asset, hotspot, crop },
         techStack,
@@ -93,8 +93,23 @@ const PAGE_FIELDS = `
     contentSection{
       contentItems[]{
         _type,
-        _type == "richText" => {
-          content
+        _type == "contentBlock" => {
+          heading,
+          body
+        },
+        _type == "quoteSection" => {
+          text,
+          author,
+          role,
+          variant
+        },
+        _type == "techSelectionSection" => {
+          title,
+          items[]{
+            tool,
+            reasoning,
+            icon
+          }
         },
         _type == "mediaBlock" => {
           image{ asset, hotspot, crop },
@@ -121,7 +136,7 @@ const PROJECT_FIELDS = `
   _type,
   title,
   role,
-  slug,
+  "slug": slug.current,
   description,
   image{ asset, hotspot, crop },
   techStack,
@@ -144,8 +159,23 @@ const PROJECT_FIELDS = `
     contentSection{
       contentItems[]{
         _type,
-        _type == "richText" => {
-          content
+        _type == "contentBlock" => {
+          heading,
+          body
+        },
+        _type == "quoteSection" => {
+          text,
+          author,
+          role,
+          variant
+        },
+        _type == "techSelectionSection" => {
+          title,
+          items[]{
+            tool,
+            reasoning,
+            icon
+          }
         },
         _type == "mediaBlock" => {
           image{ asset, hotspot, crop },
@@ -172,7 +202,7 @@ export const getProjects = cache(async function getProjects(start = 0, limit = 1
     _id,
     _type,
     title,
-    slug,
+    "slug": slug.current,
     description,
     image{ asset, hotspot, crop },
     techStack,
@@ -190,7 +220,14 @@ export const getProjects = cache(async function getProjects(start = 0, limit = 1
 });
 
 export const getProjectBySlug = cache(async function getProjectBySlug(slug: string) {
-  const query = `*[_type == "project" && slug.current == $slug][0]{ ${PROJECT_FIELDS} }`;
+  const query = `{
+    "project": *[_type == "project" && slug.current == $slug][0]{ ${PROJECT_FIELDS} },
+    "nextProject": *[_type == "project" && slug.current != $slug] | order(publishedAt desc)[0]{
+      title,
+      "slug": slug.current,
+      image
+    }
+  }`;
 
   try {
     return await sanityClient.fetch(query, { slug }, { next: { revalidate: 3600, tags: [`project-${slug}`] } });

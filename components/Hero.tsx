@@ -8,6 +8,7 @@ import { motion } from 'motion/react';
 
 interface HeroProps {
   data?: {
+    topline?: string;
     headline?: string;
     subheading?: string;
     bodyText?: string;
@@ -25,7 +26,7 @@ interface HeroProps {
 export default function Hero({ data }: HeroProps) {
   if (!data) return null;
 
-  const { headline, subheading, bodyText, image, cta1, cta2, layout = 'fullscreen' } = data;
+  const { topline, headline, subheading, bodyText, image, cta1, cta2, layout = 'fullscreen' } = data;
   const isCompact = layout === 'compact';
 
   return (
@@ -47,6 +48,16 @@ export default function Hero({ data }: HeroProps) {
       )}
 
       <div className={`${isCompact ? 'px-0 py-2' : 'px-0 py-6 lg:p-8 lg:-mt-32'}`}>
+        {topline && (
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-sm md:text-base font-semibold uppercase tracking-widest text-accent mb-4"
+          >
+            {topline}
+          </motion.p>
+        )}
         {headline && (
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

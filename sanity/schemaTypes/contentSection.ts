@@ -9,13 +9,16 @@ export default {
       type: 'array',
       of: [
         {
-          name: 'richText',
-          title: 'Rich Text',
+          name: 'contentBlock',
+          title: 'Content Block',
           type: 'object',
           fields: [
-            { name: 'content', title: 'Content', type: 'blockContent' }
+            { name: 'heading', title: 'Heading', type: 'string' },
+            { name: 'body', title: 'Body', type: 'blockContent' }
           ]
         },
+        { type: 'quoteSection' },
+        { type: 'techSelectionSection' },
         {
           name: 'mediaBlock',
           title: 'Media Block',

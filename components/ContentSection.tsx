@@ -2,6 +2,8 @@
 
 import { PortableText } from 'next-sanity';
 import MediaRenderer from '@/components/MediaRenderer';
+import QuoteSection from '@/components/QuoteSection';
+import TechSelectionSection from '@/components/TechSelectionSection';
 import type { ContentSection as ContentSectionType, ContentItem } from '@/lib/cms/types/contentSection';
 
 interface ContentSectionProps {
@@ -29,19 +31,22 @@ export default function ContentSection({ data }: ContentSectionProps) {
   if (!data?.contentItems) return null;
 
   return (
-    <div className="flex flex-col gap-12 max-w-4xl mx-auto px-4 py-20">
+    <div className="flex flex-col gap-0 max-w-4xl mx-auto px-4">
       {data.contentItems.map((item, index) => {
         switch (item._type) {
-          case 'richText':
+          case 'contentBlock':
             return (
-              <div key={index} className="prose prose-invert max-w-none">
-                <PortableText value={item.content} components={components} />
+              <div key={index} className="prose prose-invert max-w-none py-12">
+                {item.heading && (
+                  <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">{item.heading}</h2>
+                )}
+                <PortableText value={item.body} components={components} />
               </div>
             );
           
           case 'mediaBlock':
             return (
-              <figure key={index} className="my-8">
+              <figure key={index} className="py-8">
                 <div className="relative rounded-2xl overflow-hidden bg-base-800 aspect-video group">
                   {item.image ? (
                     <MediaRenderer
@@ -71,7 +76,7 @@ export default function ContentSection({ data }: ContentSectionProps) {
 
           case 'galleryBlock':
             return (
-              <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+              <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 py-8">
                 {item.items?.map((galleryItem, gIndex) => (
                   <div key={gIndex} className="relative rounded-xl overflow-hidden bg-base-800 aspect-square group">
                     {galleryItem.image && (
@@ -89,7 +94,7 @@ export default function ContentSection({ data }: ContentSectionProps) {
 
           case 'ctaBlock':
             return (
-              <div key={index} className="flex justify-center my-12">
+              <div key={index} className="flex justify-center py-8">
                 <a
                   href={item.url}
                   className="px-8 py-4 bg-accent text-base-950 rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.4)] transition-all duration-300"
@@ -97,6 +102,16 @@ export default function ContentSection({ data }: ContentSectionProps) {
                   {item.text}
                 </a>
               </div>
+            );
+
+          case 'quoteSection':
+            return (
+              <QuoteSection key={index} data={item} />
+            );
+
+          case 'techSelectionSection':
+            return (
+              <TechSelectionSection key={index} data={item} />
             );
 
           default:

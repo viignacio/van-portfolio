@@ -13,6 +13,8 @@ import projectsSection from './projectsSection';
 import certificationsSection from './certificationsSection';
 import commendationsSection from './commendationsSection';
 import contactSection from './contactSection';
+import quoteSection from './quoteSection';
+import techSelectionSection from './techSelectionSection';
 import page from './page';
 import careerEntry from './careerEntry';
 import technologyStack from './technologyStack';
@@ -41,6 +43,8 @@ export const schemaTypes = [
   certificationsSection,
   commendationsSection,
   contactSection,
+  quoteSection,
+  techSelectionSection,
   page,
   careerEntry,
   technologyStack
