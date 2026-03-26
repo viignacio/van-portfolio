@@ -1,3 +1,5 @@
+import { CharacterCountInput } from '../components/CharacterCountInput';
+
 export default {
   name: 'project',
   title: 'Project',
@@ -17,7 +19,8 @@ export default {
       title: 'Description', 
       type: 'text',
       description: 'Main project description. Max 350 characters recommended to ensure most text is visible in the 3:4 archive cards.',
-      validation: (Rule: any) => Rule.max(350).warning('Longer descriptions will be clamped to fit the 3:4 card aspect ratio.')
+      validation: (Rule: any) => Rule.max(350).warning('Longer descriptions will be clamped to fit the 3:4 card aspect ratio.'),
+      components: { input: CharacterCountInput }
     },
     { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
     { 

@@ -4,6 +4,19 @@ export default {
   type: 'object',
   fields: [
     {
+      name: 'layout',
+      title: 'Layout Style',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Fullscreen (Home)', value: 'fullscreen' },
+          { title: 'Compact (Archive/Subpages)', value: 'compact' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'fullscreen',
+    },
+    {
       name: 'headline',
       title: 'Headline',
       type: 'string'

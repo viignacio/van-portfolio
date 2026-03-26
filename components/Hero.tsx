@@ -18,25 +18,27 @@ interface HeroProps {
     };
     cta1?: { text?: string; url?: string; isExternal?: boolean };
     cta2?: { text?: string; url?: string; isExternal?: boolean; email?: string };
+    layout?: 'fullscreen' | 'compact';
   };
 }
 
 export default function Hero({ data }: HeroProps) {
   if (!data) return null;
 
-  const { headline, subheading, bodyText, image, cta1, cta2 } = data;
+  const { headline, subheading, bodyText, image, cta1, cta2, layout = 'fullscreen' } = data;
+  const isCompact = layout === 'compact';
 
   return (
-    <div className="w-full text-left">
+    <div className={`w-full text-left ${isCompact ? 'py-12 lg:py-20' : ''}`}>
       {image?.asset?._ref && (
-        <div className="mb-8 flex justify-start">
+        <div className={`${isCompact ? 'mb-6' : 'mb-8'} flex justify-start`}>
           <div className="relative">
             <Image
               src={urlFor(image).width(256).height(256).fit('crop').auto('format').url()}
               alt={headline || 'Profile'}
-              width={128}
-              height={128}
-              className="w-32 h-32 rounded-full object-cover border-4 border-text-muted shadow-2xl"
+              width={isCompact ? 96 : 128}
+              height={isCompact ? 96 : 128}
+              className={`${isCompact ? 'w-24 h-24' : 'w-32 h-32'} rounded-full object-cover border-4 border-text-muted shadow-2xl`}
               priority
             />
             <div className="absolute inset-0 rounded-full bg-accent/20 blur-xl scale-110" />
@@ -44,17 +46,18 @@ export default function Hero({ data }: HeroProps) {
         </div>
       )}
 
-      <div className="px-0 py-6 lg:p-8 lg:-mt-32">
+      <div className={`${isCompact ? 'px-0 py-2' : 'px-0 py-6 lg:p-8 lg:-mt-32'}`}>
         {headline && (
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-8xl font-bold text-text-primary mb-4 drop-shadow-4xl"
+            className={`${isCompact ? 'text-3xl md:text-6xl' : 'text-4xl md:text-8xl'} font-bold text-text-primary mb-4 drop-shadow-4xl`}
           >
             {headline}
           </motion.h1>
-        )}
+        )
+}
 
         {subheading && (
           <motion.h2

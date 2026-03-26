@@ -44,29 +44,35 @@ export default async function ProjectPage({ params }: Props) {
     >
       <div className="will-change-scroll">
         {/* Render Layout Blocks from the project document */}
-        {project.layoutBlocks?.map((layoutBlock: any, index: number) => (
-          <LayoutBlock
-            key={layoutBlock._id || `project-block-${index}`}
-            id={layoutBlock.blockType}
-            className={`${index === 0 ? 'h-screen-dynamic bg-base relative overflow-hidden' : 'bg-base'}`}
-          >
-            {index === 0 && layoutBlock.heroSection && (
-              <>
-                <HeroBackground background={layoutBlock.heroSection?.background} />
-                <div className="absolute inset-0 bg-linear-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10" />
-                <div className="h-full flex items-center justify-start relative z-20 pointer-events-none">
-                  <div className="pointer-events-auto relative z-20 px-4 lg:w-4/5 lg:mx-auto lg:p-8">
-                    <Hero data={layoutBlock.heroSection} />
+        {project.layoutBlocks?.map((layoutBlock: any, index: number) => {
+          const isCompactHero = index === 0 && layoutBlock.heroSection?.layout === 'compact';
+          
+          return (
+            <LayoutBlock
+              key={layoutBlock._id || `project-block-${index}`}
+              id={layoutBlock.blockType}
+              className={`${index === 0 ? (isCompactHero ? 'min-h-[40vh] bg-base relative overflow-hidden' : 'h-screen-dynamic bg-base relative overflow-hidden') : 'bg-base'}`}
+            >
+              {index === 0 && layoutBlock.heroSection && (
+                <>
+                  <HeroBackground background={layoutBlock.heroSection?.background} />
+                  {!isCompactHero && (
+                    <div className="absolute inset-0 bg-linear-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10" />
+                  )}
+                  <div className={`${isCompactHero ? 'py-20' : 'h-full flex items-center'} justify-start relative z-20 pointer-events-none`}>
+                    <div className="pointer-events-auto relative z-20 px-4 lg:w-4/5 lg:mx-auto lg:p-8">
+                      <Hero data={layoutBlock.heroSection} />
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
 
             {layoutBlock.contentSection && (
               <ContentSection data={layoutBlock.contentSection} />
             )}
-          </LayoutBlock>
-        ))}
+            </LayoutBlock>
+          );
+        })}
         
         {/* If no layout blocks, fallback to a basic project overview */}
         {!project.layoutBlocks || project.layoutBlocks.length === 0 ? (
